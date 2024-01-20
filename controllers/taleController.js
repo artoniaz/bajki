@@ -15,6 +15,19 @@ const getTale = async (req, res) => {
   res.status(200).json(tale);
 };
 
+const createTale = async (req, res) => {
+  const { text, child_name } = req.body;
+
+  try {
+    const tale = await Tale.create({ text, child_name });
+    res.status(200).json(tale);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ errorMessage: error.message });
+  }
+};
+
 module.exports = {
   getTale,
+  createTale
 };
