@@ -4,11 +4,19 @@ const Schema = mongoose.Schema;
 
 const taleSchema = new Schema(
   {
-    text: {
+    content: {
       type: String,
       required: true,
     },
     child_name: {
+      type: String,
+      required: true,
+    },
+    age: {
+      type: Number,
+      required: true,
+    },
+    topic: {
       type: String,
       required: true,
     },
