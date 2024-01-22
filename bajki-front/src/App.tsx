@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { RouterProvider } from "react-router-dom";
+import { Router } from "./Router";
 
 function App() {
   const fetchTale = async () => {
@@ -15,7 +17,7 @@ function App() {
 
     fetchTale();
   });
-  return <div className="App">test</div>;
+  return <RouterProvider router={Router} />;
 }
 
 export default App;
