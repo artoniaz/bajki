@@ -4,9 +4,9 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
-import Home from "./pages/HomePage";
+import Home from "./pages/Home";
 import AboutPage from "./pages/AboutPage";
-import CreateTalePage from "./pages/CreateTalePage";
+import CreateTalePage from "./features/tales/createTale/CreateTalePage";
 import NotFound from "./pages/NotFoudPage";
 
 export const Router = createBrowserRouter(
