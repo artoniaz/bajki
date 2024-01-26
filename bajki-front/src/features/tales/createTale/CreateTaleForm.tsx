@@ -3,13 +3,16 @@ import TaleModel from "../../../models/TaleModel";
 import { useDispatch, useSelector } from "react-redux";
 import { TaleThunk } from "./taleThunk";
 import { AppDispatch, RootState } from "../../store";
+import { Typography } from "@mui/material";
 
-const CreateTalePage = () => {
+const CreateTaleForm = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [age, setAge] = useState(0);
   const [child_name, setChildName] = useState("");
   const [topic, setTopic] = useState("dinosaurs");
-  const taleContent = useSelector((state: RootState) => state.createTale.data.content)
+  const taleContent = useSelector(
+    (state: RootState) => state.createTale.data.content
+  );
 
   const handleSubmit = (e: any): void => {
     e.preventDefault();
@@ -21,7 +24,9 @@ const CreateTalePage = () => {
   };
   return (
     <div>
-      <h3>Wygeneruj bajkę</h3>
+      <Typography variant="h3">
+        Wygeneruj bajkę
+      </Typography>
       <form onSubmit={handleSubmit}>
         <label>
           <span>Wiek</span>
@@ -33,7 +38,7 @@ const CreateTalePage = () => {
           />
         </label>
         <label>
-          <span>Imię</span>
+          <Typography>Imię</Typography>
           <input
             type="text"
             value={child_name}
@@ -61,4 +66,4 @@ const CreateTalePage = () => {
   );
 };
 
-export default CreateTalePage;
+export default CreateTaleForm;
