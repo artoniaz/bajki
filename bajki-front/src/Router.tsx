@@ -8,22 +8,22 @@ import Home from "./pages/Home";
 import AboutPage from "./pages/AboutPage";
 import NotFound from "./pages/NotFoudPage";
 import CreateTaleForm from "./features/tales/createTale/CreateTaleForm";
-import NavItemModel from "./models/NavItemModel";
+import { NavItemsModel } from "./models/NavItemModel";
 
-export const navItems: NavItemModel[] = [
-  {
+export const navItems: NavItemsModel = {
+  home: {
     path: "/",
     content: "home",
   },
-  {
+  about: {
     path: "/about",
     content: "o nas",
   },
-  {
+  createTale: {
     path: "/createTale",
     content: "stwórz bajkę",
   },
-];
+};
 
 export const Router = createBrowserRouter(
   createRoutesFromElements(

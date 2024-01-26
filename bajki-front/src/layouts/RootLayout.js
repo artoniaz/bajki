@@ -1,13 +1,14 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { Box } from "@mui/material";
 
 const RootLayout = () => {
   return (
     <div>
       <Navbar />
-      <main>
+      <Box component="main">
         <Outlet />
-      </main>
+      </Box>
     </div>
   );
 };
