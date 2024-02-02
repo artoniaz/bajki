@@ -7,8 +7,8 @@ import RootLayout from "./layouts/RootLayout";
 import Home from "./pages/Home";
 import AboutPage from "./pages/AboutPage";
 import NotFound from "./pages/NotFoudPage";
-import CreateTaleForm from "./features/tales/createTale/CreateTaleForm";
 import { NavItemsModel } from "./models/NavItemModel";
+import CreateTalePage from "./pages/CreateTalePage";
 
 export const navItems: NavItemsModel = {
   home: {
@@ -30,7 +30,7 @@ export const Router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
       <Route path="about" element={<AboutPage />} />
-      <Route path="createTale" element={<CreateTaleForm />} />
+      <Route path="createTale" element={<CreateTalePage />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )

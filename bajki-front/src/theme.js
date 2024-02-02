@@ -27,7 +27,7 @@ export const theme = createTheme({
     },
     text: {
       primary: "#1D2731", //ivory black
-      secondary: "#FFFFFF", //white
+      secondary: "#1D2731", //white
     },
   },
 });
