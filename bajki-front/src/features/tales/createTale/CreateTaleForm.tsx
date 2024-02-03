@@ -2,16 +2,12 @@ import TaleModel from "../../../models/TaleModel";
 import { useDispatch, useSelector } from "react-redux";
 import { TaleThunk } from "./taleThunk";
 import { AppDispatch, RootState } from "../../store";
-import {
-  FormControl,
-  MenuItem,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { FormControl, MenuItem, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Status } from "../../../models/InitialState";
+import { useEffect } from "react";
 
 const validationSchema = yup.object().shape({
   child_name: yup.string().required("Imię jest wymagane"),
@@ -25,11 +21,12 @@ const validationSchema = yup.object().shape({
 
 const CreateTaleForm = () => {
   const dispatch = useDispatch<AppDispatch>();
+
   const taleContent = useSelector(
     (state: RootState) => state.createTale.data.content
   );
-  const isCreateTaleStatusLoading = useSelector(
-    (state: RootState) => state.createTale.status === Status.Loading
+  const taleStatus: Status = useSelector(
+    (state: RootState) => state.createTale.status
   );
 
   const formik = useFormik({
@@ -41,9 +38,14 @@ const CreateTaleForm = () => {
     validationSchema: validationSchema,
     onSubmit: (values: TaleModel, { resetForm }) => {
       dispatch(TaleThunk.createTale(values));
-      resetForm();
     },
   });
+
+  useEffect(() => {
+    if (taleStatus === Status.Success) {
+      formik.resetForm();
+    }
+  }, [taleStatus]);
 
   return (
     <>
@@ -93,12 +95,12 @@ const CreateTaleForm = () => {
         <LoadingButton
           type="submit"
           variant="contained"
-          loading={isCreateTaleStatusLoading}
+          loading={taleStatus === Status.Loading}
         >
           Stwórz bajkę
         </LoadingButton>
       </FormControl>
-      {taleContent && taleContent}
+      {taleStatus === Status.Success && taleContent}
     </>
   );
 };
