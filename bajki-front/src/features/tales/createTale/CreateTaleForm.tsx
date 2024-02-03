@@ -1,18 +1,17 @@
-import { useState } from "react";
 import TaleModel from "../../../models/TaleModel";
 import { useDispatch, useSelector } from "react-redux";
 import { TaleThunk } from "./taleThunk";
 import { AppDispatch, RootState } from "../../store";
 import {
-  Button,
   FormControl,
   MenuItem,
-  Select,
   TextField,
   Typography,
 } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { Status } from "../../../models/InitialState";
 
 const validationSchema = yup.object().shape({
   child_name: yup.string().required("Imię jest wymagane"),
@@ -29,12 +28,15 @@ const CreateTaleForm = () => {
   const taleContent = useSelector(
     (state: RootState) => state.createTale.data.content
   );
+  const isCreateTaleStatusLoading = useSelector(
+    (state: RootState) => state.createTale.status === Status.Loading
+  );
 
   const formik = useFormik({
     initialValues: {
-      age: 0,
       child_name: "",
-      topic: "dinosaurs",
+      age: 0,
+      topic: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values: TaleModel, { resetForm }) => {
@@ -42,7 +44,7 @@ const CreateTaleForm = () => {
       resetForm();
     },
   });
-  
+
   return (
     <>
       <Typography sx={{ typography: { sm: "h5", md: "h3" } }} color="primary">
@@ -69,13 +71,14 @@ const CreateTaleForm = () => {
           label="Wiek *"
           type="number"
           sx={{ mb: 2 }}
-          value={formik.values.age || ''}
+          value={formik.values.age || ""}
           onChange={formik.handleChange}
           error={formik.touched.age && Boolean(formik.errors.age)}
         />
-        <Select
-          id="topics"
-          name="topics"
+        <TextField
+          select
+          id="topic"
+          name="topic"
           label="Temat"
           value={formik.values.topic}
           onChange={formik.handleChange}
@@ -85,10 +88,15 @@ const CreateTaleForm = () => {
           <MenuItem value="dinosaurs">Dinozaury</MenuItem>
           <MenuItem value="space">Kosmos</MenuItem>
           <MenuItem value="pokemon">Pokemon</MenuItem>
-        </Select>
-        <Button type="submit" variant="contained">
+          <MenuItem value="cats">Koty</MenuItem>
+        </TextField>
+        <LoadingButton
+          type="submit"
+          variant="contained"
+          loading={isCreateTaleStatusLoading}
+        >
           Stwórz bajkę
-        </Button>
+        </LoadingButton>
       </FormControl>
       {taleContent && taleContent}
     </>
