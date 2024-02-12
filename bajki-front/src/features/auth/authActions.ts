@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import UserModel from "../../models/UserModel";
+import {UserModel} from "../../models/UserModel";
 import AuthCredentialsModel from "../../models/AuthCredentialsModel";
 import { USER_TOKEN } from "../../utils/constants";
 import { authService } from "./authService";

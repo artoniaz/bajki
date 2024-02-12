@@ -5,10 +5,14 @@ import { authActions } from "../features/auth/authActions";
 import { Status } from "../models/InitialState";
 import { useAppSelector, useAppDispatch } from "../hooks/reduxHooks";
 import { loginValidationSchema } from "../formValidationSchams/loginValidationSchema";
+import { useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import { navItems } from "../utils/navItems";
 
 const Login = () => {
   const dispatch = useAppDispatch();
-  const {  status, error } = useAppSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const { status, error } = useAppSelector((state) => state.auth);
 
   const formik = useFormik({
     initialValues: {
@@ -25,6 +29,12 @@ const Login = () => {
       );
     },
   });
+
+  useEffect(() => {
+    if(status ===Status.Success) {
+      navigate(navItems.home.path)
+    }
+  },[status])
 
   return (
     <FormControl

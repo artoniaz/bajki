@@ -1,5 +1,5 @@
 import AuthCredentialsModel from "../../models/AuthCredentialsModel";
-import UserModel from "../../models/UserModel";
+import { UserModel } from "../../models/UserModel";
 import { fetchAPI } from "../../utils/fetchAPI";
 
 const API_URL = "/api/user";

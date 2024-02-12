@@ -1,11 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import InitialState, { Status } from "../../models/InitialState";
-import UserModel from "../../models/UserModel";
+import { UserModel } from "../../models/UserModel";
 import { authActions } from "./authActions";
 import { USER_TOKEN } from "../../utils/constants";
 
 const initialState: InitialState<UserModel | null> = {
-  data: null,
+  data: {
+    _id: "",
+    userToken: "",
+    userInfo: null,
+  },
   status: Status.Initial,
   error: null,
 };

@@ -8,12 +8,13 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import NavLinkButton from "./NavLinkButton";
-import { navItems } from "../Router";
+import { navItems } from "../utils/navItems";
 import { useAppDispatch } from "../hooks/reduxHooks";
 import { logoutUser } from "../features/auth/authSlice";
 
 const Navbar = () => {
-  const dispach = useAppDispatch();
+  const dispatch = useAppDispatch();
+
   return (
     <AppBar component="nav">
       <Toolbar>
@@ -45,7 +46,7 @@ const Navbar = () => {
         </Box>
         <NavLinkButton to="/login" text="Zaloguj" />
         <NavLinkButton to="/register" text="Stwórz konto" />
-        <Button sx={{ color: "white" }} onClick={() => dispach(logoutUser())}>
+        <Button sx={{ color: "white" }} onClick={() => dispatch(logoutUser())}>
           Wyloguj
         </Button>
       </Toolbar>

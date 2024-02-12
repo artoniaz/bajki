@@ -12,20 +12,7 @@ import CreateTalePage from "./pages/CreateTalePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
-export const navItems: NavItemsModel = {
-  home: {
-    path: "/",
-    content: "home",
-  },
-  about: {
-    path: "/about",
-    content: "o nas",
-  },
-  createTale: {
-    path: "/createTale",
-    content: "stwórz bajkę",
-  },
-};
+
 
 export const Router = createBrowserRouter(
   createRoutesFromElements(
