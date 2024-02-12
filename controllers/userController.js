@@ -18,16 +18,30 @@ const loginUser = async (req, res) => {
   }
 };
 
-const signupUser = async (req, res) => {
-  const { email, password } = req.body;
+const registerUser = async (req, res) => {
+  const { name, email, password } = req.body;
   try {
-    const user = await User.signup(email, password);
+    const user = await User.register(name, email, password);
     const userToken = createToken(user._id);
 
-    res.status(200).json({ email, userToken });
+    res.status(200).json({ name, email, userToken });
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
 };
 
-module.exports = { loginUser, signupUser };
+const getUserProfile = async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    res.json({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  } else {
+    res.status(404).json({error: 'User not found'})
+  }
+};
+
+module.exports = { loginUser, registerUser, getUserProfile };
