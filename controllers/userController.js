@@ -31,8 +31,8 @@ const registerUser = async (req, res) => {
 };
 
 const getUserProfile = async (req, res) => {
-  const user = await User.findById(req.user._id);
-
+  const {_id} = req.body;
+  const user = await User.findById(_id);
   if (user) {
     res.json({
       id: user._id,
