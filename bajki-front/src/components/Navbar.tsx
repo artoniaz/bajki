@@ -44,7 +44,7 @@ const Navbar = () => {
           ))}
         </Box>
         <NavLinkButton to="/login" text="Zaloguj" />
-        <NavLinkButton to="/signup" text="Stwórz konto" />
+        <NavLinkButton to="/register" text="Stwórz konto" />
         <Button sx={{ color: "white" }} onClick={() => dispach(logoutUser())}>
           Wyloguj
         </Button>

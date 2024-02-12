@@ -8,7 +8,7 @@ export const authService = {
   registerUser: async (req: AuthCredentialsModel): Promise<UserModel> => {
     try {
       const response = await fetchAPI({
-        url: `${API_URL}/signup`,
+        url: `${API_URL}/register`,
         req: req,
         method: "POST",
       });

@@ -6,7 +6,7 @@ import { authService } from "./authService";
 
 export const authActions = {
   registerUser: createAsyncThunk(
-    "user/signup",
+    "user/register",
     async (req: AuthCredentialsModel) => {
       const user: UserModel = await authService.registerUser(req);
       localStorage.setItem(USER_TOKEN, user.userToken);

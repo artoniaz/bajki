@@ -1,24 +1,27 @@
 import { FormControl, TextField, dividerClasses } from "@mui/material";
 import { useFormik } from "formik";
-import { authValidationSchema } from "../features/auth/authValidationSchema";
 import { LoadingButton } from "@mui/lab";
 import { authActions } from "../features/auth/authActions";
 import { Status } from "../models/InitialState";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import { registerValidationSchema } from "../formValidationSchams/registerValidationSchama";
+import AuthCredentialsModel from "../models/AuthCredentialsModel";
 
-const Signup = () => {
+const Register = () => {
   const dispatch = useAppDispatch();
   const { status, error } = useAppSelector((state) => state.auth);
 
   const formik = useFormik({
     initialValues: {
+      name: "",
       email: "",
       password: "",
     },
-    validationSchema: authValidationSchema,
-    onSubmit: (values: { email: string; password: string }) => {
+    validationSchema: registerValidationSchema,
+    onSubmit: (values: AuthCredentialsModel) => {
       dispatch(
         authActions.registerUser({
+          name: values.name,
           email: values.email,
           password: values.password,
         })
@@ -32,6 +35,16 @@ const Signup = () => {
       onSubmit={(val) => formik.handleSubmit(val)}
     >
       <h3>Sign up</h3>
+      <TextField
+        id="name"
+        name="name"
+        label="Name *"
+        type="name"
+        sx={{ mb: 2 }}
+        value={formik.values.name}
+        onChange={formik.handleChange}
+        error={formik.touched.name && Boolean(formik.errors.name)}
+      />
       <TextField
         id="email"
         name="email"
@@ -64,4 +77,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Register;

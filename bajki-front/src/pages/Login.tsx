@@ -1,10 +1,10 @@
-import { FormControl, TextField, dividerClasses } from "@mui/material";
+import { FormControl, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import { authValidationSchema } from "../features/auth/authValidationSchema";
 import { LoadingButton } from "@mui/lab";
 import { authActions } from "../features/auth/authActions";
 import { Status } from "../models/InitialState";
 import { useAppSelector, useAppDispatch } from "../hooks/reduxHooks";
+import { loginValidationSchema } from "../formValidationSchams/loginValidationSchema";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -15,7 +15,7 @@ const Login = () => {
       email: "",
       password: "",
     },
-    validationSchema: authValidationSchema,
+    validationSchema: loginValidationSchema,
     onSubmit: (values: { email: string; password: string }) => {
       dispatch(
         authActions.loginUser({

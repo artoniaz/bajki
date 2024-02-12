@@ -10,7 +10,7 @@ import AboutPage from "./pages/AboutPage";
 import NotFound from "./pages/NotFoudPage";
 import CreateTalePage from "./pages/CreateTalePage";
 import Login from "./pages/Login";
-import Signup from "./pages/Register";
+import Register from "./pages/Register";
 
 export const navItems: NavItemsModel = {
   home: {
@@ -34,7 +34,7 @@ export const Router = createBrowserRouter(
       <Route path="about" element={<AboutPage />} />
       <Route path="createTale" element={<CreateTalePage />} />
       <Route path="login" element={<Login />} />
-      <Route path="signup" element={<Signup />} />
+      <Route path="register" element={<Register />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
