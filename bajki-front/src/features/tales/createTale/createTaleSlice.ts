@@ -27,7 +27,6 @@ export const createTaleSlice = createSlice({
       state.data = action.payload;
     });
     builder.addCase(TaleThunk.createTale.rejected, (state, action) => {
-      console.log(state, action);
       state.status = Status.Failed;
       state.error = action.error.message!;
     });

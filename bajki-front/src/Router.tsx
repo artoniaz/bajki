@@ -3,12 +3,14 @@ import {
   Route,
   createRoutesFromElements,
 } from "react-router-dom";
+import { NavItemsModel } from "./models/NavItemModel";
 import RootLayout from "./layouts/RootLayout";
 import Home from "./pages/Home";
 import AboutPage from "./pages/AboutPage";
 import NotFound from "./pages/NotFoudPage";
-import { NavItemsModel } from "./models/NavItemModel";
 import CreateTalePage from "./pages/CreateTalePage";
+import Login from "./pages/Login";
+import Signup from "./pages/Register";
 
 export const navItems: NavItemsModel = {
   home: {
@@ -31,6 +33,8 @@ export const Router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="about" element={<AboutPage />} />
       <Route path="createTale" element={<CreateTalePage />} />
+      <Route path="login" element={<Login />} />
+      <Route path="signup" element={<Signup />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )

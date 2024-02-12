@@ -3,6 +3,6 @@ export interface NavItemsModel {
 }
 
 interface NavItemModel {
-  path: String;
-  content: String;
+  path: string;
+  content: string;
 }

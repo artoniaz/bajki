@@ -1,32 +1,19 @@
 import TaleModel from "../../../models/TaleModel";
-import { useDispatch, useSelector } from "react-redux";
 import { TaleThunk } from "./taleThunk";
 import { AppDispatch, RootState } from "../../store";
 import { FormControl, MenuItem, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useFormik } from "formik";
-import * as yup from "yup";
 import { Status } from "../../../models/InitialState";
 import { useEffect } from "react";
-
-const validationSchema = yup.object().shape({
-  child_name: yup.string().required("Imię jest wymagane"),
-  age: yup
-    .number()
-    .required("Wiek jest wymagany")
-    .positive("Wiek nie może być ujemny")
-    .integer(),
-  topic: yup.string().required("Temat jest wymagany"),
-});
+import { createTaleValidationSchema } from "./createTaleValidationSchema";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 
 const CreateTaleForm = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
-  const taleContent = useSelector(
-    (state: RootState) => state.createTale.data.content
-  );
-  const taleStatus: Status = useSelector(
-    (state: RootState) => state.createTale.status
+  const {data: {content}, status} = useAppSelector(
+    (state) => state.createTale
   );
 
   const formik = useFormik({
@@ -35,17 +22,17 @@ const CreateTaleForm = () => {
       age: 0,
       topic: "",
     },
-    validationSchema: validationSchema,
-    onSubmit: (values: TaleModel, { resetForm }) => {
+    validationSchema: createTaleValidationSchema,
+    onSubmit: (values: TaleModel) => {
       dispatch(TaleThunk.createTale(values));
     },
   });
 
   useEffect(() => {
-    if (taleStatus === Status.Success) {
+    if (status === Status.Success) {
       formik.resetForm();
     }
-  }, [taleStatus]);
+  }, [status]);
 
   return (
     <>
@@ -95,12 +82,12 @@ const CreateTaleForm = () => {
         <LoadingButton
           type="submit"
           variant="contained"
-          loading={taleStatus === Status.Loading}
+          loading={status === Status.Loading}
         >
           Stwórz bajkę
         </LoadingButton>
       </FormControl>
-      {taleStatus === Status.Success && taleContent}
+      {status === Status.Success && content}
     </>
   );
 };
