@@ -5,7 +5,7 @@ import {
   Typography,
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { navItems } from "../Router";
+import { navItems } from "../utils/navItems";
 
 const Home = () => {
   return (
