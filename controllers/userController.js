@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
 
 const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
@@ -10,9 +11,8 @@ const loginUser = async (req, res) => {
   try {
     const user = await User.login(email, password);
     const userToken = createToken(user._id);
-    const _id = user._id;
 
-    res.status(200).json({ _id, userToken });
+    res.status(200).json({ _id: user._id, userToken });
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
@@ -23,17 +23,22 @@ const registerUser = async (req, res) => {
   try {
     const user = await User.register(name, email, password);
     const userToken = createToken(user._id);
-    const _id = user._id;
 
-    res.status(200).json({ _id, userToken });
+    res.status(200).json({ _id: user._id, userToken });
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
 };
 
 const getUserProfile = async (req, res) => {
-  const {_id} = req.body;
+  const { _id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(_id)) {
+    return res.status(404).json({ error: "No user found" });
+  }
+
   const user = await User.findById(_id);
+
   if (user) {
     res.json({
       id: user._id,
@@ -41,7 +46,7 @@ const getUserProfile = async (req, res) => {
       email: user.email,
     });
   } else {
-    res.status(404).json({error: 'User not found'})
+    res.status(404).json({ error: "User not found" });
   }
 };
 

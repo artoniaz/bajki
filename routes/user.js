@@ -9,6 +9,6 @@ router.post("/login", loginUser);
 router.post("/register", registerUser);
 //TODO: protect the route
 // router.route('/profile').get(protect, userController.getUserProfile)
-router.get("/profile", getUserProfile);
+router.get("/profile/:_id", getUserProfile);
 
 module.exports = router;

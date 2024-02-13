@@ -1,1 +1,1 @@
-export const USER_TOKEN: string = 'userToken';
+export const USER_LOGGED_IN: string = 'userLoggedIn';

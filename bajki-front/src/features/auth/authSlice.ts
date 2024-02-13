@@ -2,13 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 import InitialState, { Status } from "../../models/InitialState";
 import { UserModel } from "../../models/UserModel";
 import { authActions } from "./authActions";
-import { USER_TOKEN } from "../../utils/constants";
+import { USER_LOGGED_IN } from "../../utils/constants";
 
-const initialState: InitialState<UserModel | null> = {
+const initialState: InitialState<UserModel> = {
   data: {
-    _id: "",
-    userToken: "",
-    userInfo: null,
+    authInfo: {
+      _id: "",
+      userToken: "",
+    },
+    userInfo: {
+      _id: "",
+      name: "",
+      email: "",
+    },
   },
   status: Status.Initial,
   error: null,
@@ -20,9 +26,10 @@ const authSlice = createSlice({
   reducers: {
     logoutUser: (state) => {
       state.status = Status.Initial;
-      state.data = null;
+      state.data.authInfo = null;
+      state.data.userInfo = null;
       state.error = null;
-      localStorage.removeItem(USER_TOKEN);
+      localStorage.removeItem(USER_LOGGED_IN);
     },
   },
   extraReducers(builder) {
@@ -34,7 +41,7 @@ const authSlice = createSlice({
     builder.addCase(authActions.registerUser.fulfilled, (state, action) => {
       state.status = Status.Success;
       state.error = null;
-      state.data = action.payload;
+      state.data.authInfo = action.payload;
     });
     builder.addCase(authActions.registerUser.rejected, (state, action) => {
       state.status = Status.Failed;
@@ -49,9 +56,24 @@ const authSlice = createSlice({
     builder.addCase(authActions.loginUser.fulfilled, (state, action) => {
       state.status = Status.Success;
       state.error = null;
-      state.data = action.payload;
+      state.data!.authInfo = action.payload;
     });
     builder.addCase(authActions.loginUser.rejected, (state, action) => {
+      state.status = Status.Failed;
+      state.error = action.error.message!;
+    });
+
+    // get user profile
+    builder.addCase(authActions.getUserProfile.pending, (state) => {
+      state.status = Status.Loading;
+      state.error = null;
+    });
+    builder.addCase(authActions.getUserProfile.fulfilled, (state, action) => {
+      state.status = Status.Success;
+      state.error = null;
+      state.data.userInfo = action.payload;
+    });
+    builder.addCase(authActions.getUserProfile.rejected, (state, action) => {
       state.status = Status.Failed;
       state.error = action.error.message!;
     });
