@@ -3,7 +3,6 @@ import {
   Route,
   createRoutesFromElements,
 } from "react-router-dom";
-import { NavItemsModel } from "./models/NavItemModel";
 import RootLayout from "./layouts/RootLayout";
 import Home from "./pages/Home";
 import AboutPage from "./pages/AboutPage";
