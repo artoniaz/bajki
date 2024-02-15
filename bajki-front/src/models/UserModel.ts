@@ -1,15 +1,10 @@
-export interface UserInfo {
+export interface UserProfile {
   _id: string;
   name: string;
   email: string;
 }
 
-export interface AuthInfo {
-  _id: string;
-  userToken: string;
-}
-
-export  interface UserModel {
-  authInfo: AuthInfo | null;
-  userInfo: UserInfo | null;
+export interface UserModel {
+  userToken: string | null;
+  userProfile: UserProfile | null;
 }

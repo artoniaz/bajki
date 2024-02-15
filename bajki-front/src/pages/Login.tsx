@@ -11,7 +11,11 @@ import { Status } from "../utils/stateStatus";
 
 const Login = () => {
   const dispatch = useAppDispatch();
-  const { loginStatus, loginError, data: {userInfo} } = useAppSelector((state) => state.auth);
+  const {
+    loginStatus,
+    loginError,
+    data: { userProfile: userInfo },
+  } = useAppSelector((state) => state.auth);
   const EMAIL = "email";
   const PASSWORD = "password";
 

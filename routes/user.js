@@ -8,10 +8,8 @@ const requireAuth = require("../middleware/requireAuth");
 
 const router = express.Router();
 
-
 router.post("/login", loginUser);
 router.post("/register", registerUser);
-router.use(requireAuth);
-router.get("/profile/:_id", getUserProfile);
+router.route("/profile").get(requireAuth, getUserProfile);
 
 module.exports = router;

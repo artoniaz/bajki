@@ -6,15 +6,8 @@ import { Status } from "../../utils/stateStatus";
 
 const initialState: InitialAuthState = {
   data: {
-    authInfo: {
-      _id: "",
-      userToken: "",
-    },
-    userInfo: {
-      _id: "",
-      name: "",
-      email: "",
-    },
+    userToken: null,
+    userProfile: null,
   },
   loginStatus: Status.Initial,
   loginError: null,
@@ -29,8 +22,8 @@ const authSlice = createSlice({
     logoutUser: (state) => {
       state.loginStatus = Status.Initial;
       state.registerStatus = Status.Initial;
-      state.data.authInfo = null;
-      state.data.userInfo = null;
+      state.data.userToken = "";
+      state.data.userProfile = null;
       state.loginError = null;
       state.registerError = null;
       localStorage.removeItem(USER_LOGGED_IN);
@@ -45,7 +38,7 @@ const authSlice = createSlice({
     builder.addCase(authActions.registerUser.fulfilled, (state, action) => {
       state.registerStatus = Status.Success;
       state.registerError = null;
-      state.data.authInfo = action.payload;
+      state.data.userToken = action.payload;
     });
     builder.addCase(authActions.registerUser.rejected, (state, action) => {
       state.registerStatus = Status.Failed;
@@ -60,7 +53,7 @@ const authSlice = createSlice({
     builder.addCase(authActions.loginUser.fulfilled, (state, action) => {
       state.loginStatus = Status.Success;
       state.loginError = null;
-      state.data!.authInfo = action.payload;
+      state.data.userToken = action.payload;
     });
     builder.addCase(authActions.loginUser.rejected, (state, action) => {
       state.loginStatus = Status.Failed;
@@ -68,19 +61,14 @@ const authSlice = createSlice({
     });
 
     // get user profile
-    builder.addCase(authActions.getUserProfile.pending, (state) => {
-      state.loginStatus = Status.Loading;
-      state.loginError = null;
-    });
+    builder.addCase(authActions.getUserProfile.pending, (state) => {});
     builder.addCase(authActions.getUserProfile.fulfilled, (state, action) => {
       state.loginStatus = Status.Success;
-      state.loginError = null;
-      state.data.userInfo = action.payload;
+      //TODO: error handling
+      state.data.userProfile = action.payload.userProfile;
+      state.data.userToken = action.payload.userToken;
     });
-    builder.addCase(authActions.getUserProfile.rejected, (state, action) => {
-      state.loginStatus = Status.Failed;
-      state.loginError = action.error.message!;
-    });
+    builder.addCase(authActions.getUserProfile.rejected, (state, action) => {});
   },
 });
 

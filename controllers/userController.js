@@ -12,7 +12,7 @@ const loginUser = async (req, res) => {
     const user = await User.login(email, password);
     const userToken = createToken(user._id);
 
-    res.status(200).json({ _id: user._id, userToken });
+    res.status(200).json({ userToken });
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
@@ -31,13 +31,7 @@ const registerUser = async (req, res) => {
 };
 
 const getUserProfile = async (req, res) => {
-  const { _id } = req.params;
-
-  if (!mongoose.Types.ObjectId.isValid(_id)) {
-    return res.status(404).json({ error: "No user found" });
-  }
-
-  const user = await User.findById(_id);
+  const user = await User.findById(req.user._id);
 
   if (user) {
     res.json({

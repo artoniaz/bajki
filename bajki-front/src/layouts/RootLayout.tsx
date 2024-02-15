@@ -5,19 +5,18 @@ import { useEffect } from "react";
 import { USER_LOGGED_IN } from "../utils/constants";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { authActions } from "../features/auth/authActions";
-import { AuthInfo } from "../models/UserModel";
 
 const RootLayout = () => {
   const dispatch = useAppDispatch();
-  const userId = useAppSelector((state) => state.auth.data.authInfo?._id);
+  const { userToken } = useAppSelector((state) => state.auth.data);
 
   useEffect(() => {
-    const userJson = localStorage.getItem(USER_LOGGED_IN);
-    const user: AuthInfo = userJson ? JSON.parse(userJson) : null;
-    if (user) {
-      dispatch(authActions.getUserProfile(user));
+    const storedToken = localStorage.getItem(USER_LOGGED_IN);
+    if (userToken || storedToken) {
+      const token = userToken ?? storedToken;
+      dispatch(authActions.getUserProfile(token!));
     }
-  },[userId])
+  }, [userToken]);
   return (
     <div>
       <Navbar />

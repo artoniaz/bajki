@@ -12,9 +12,11 @@ import { navItems } from "../utils/navItems";
 
 const Register = () => {
   const dispatch = useAppDispatch();
-  const { registerStatus, registerError, data: {userInfo} } = useAppSelector(
-    (state) => state.auth
-  );
+  const {
+    registerStatus,
+    registerError,
+    data: { userProfile: userInfo },
+  } = useAppSelector((state) => state.auth);
 
   const formik = useFormik({
     initialValues: {

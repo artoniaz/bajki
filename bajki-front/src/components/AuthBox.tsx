@@ -4,18 +4,18 @@ import NavLinkButton from "./NavLinkButton";
 import { logoutUser } from "../features/auth/authSlice";
 
 const AuthBox = () => {
-  const { userInfo } = useAppSelector((state) => state.auth.data);
+  const { userProfile } = useAppSelector((state) => state.auth.data);
   const dispatch = useAppDispatch();
   return (
     <Box>
-      {!userInfo ? (
+      {!userProfile ? (
         <>
           <NavLinkButton to="/login" text="Zaloguj" />
           <NavLinkButton to="/register" text="Stwórz konto" />
         </>
       ) : (
         <>
-          {userInfo.name}
+          {userProfile.name}
           <Button
             sx={{ color: "white" }}
             onClick={() => dispatch(logoutUser())}

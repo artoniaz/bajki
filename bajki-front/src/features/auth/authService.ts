@@ -1,11 +1,11 @@
 import AuthCredentialsModel from "../../models/AuthCredentialsModel";
-import { AuthInfo, UserInfo } from "../../models/UserModel";
+import { UserProfile } from "../../models/UserModel";
 import { fetchAPI } from "../../utils/fetchAPI";
 
 const API_URL = "/api/user";
 
 export const authService = {
-  registerUser: async (req: AuthCredentialsModel): Promise<AuthInfo> => {
+  registerUser: async (req: AuthCredentialsModel): Promise<string> => {
     try {
       const response = await fetchAPI({
         url: `${API_URL}/register`,
@@ -16,12 +16,12 @@ export const authService = {
       if (!response.ok) {
         throw json.error;
       }
-      return json;
+      return json.userToken;
     } catch (e) {
       throw e;
     }
   },
-  loginUser: async (req: AuthCredentialsModel): Promise<AuthInfo> => {
+  loginUser: async (req: AuthCredentialsModel): Promise<string> => {
     try {
       const response = await fetchAPI({
         url: `${API_URL}/login`,
@@ -32,25 +32,22 @@ export const authService = {
       if (!response.ok) {
         throw json.error;
       }
-      return json;
+      return json.userToken;
     } catch (e) {
       throw e;
     }
   },
-  getUserProfile: async (req: AuthInfo): Promise<UserInfo> => {
+  getUserProfile: async (userToken: string): Promise<UserProfile> => {
     try {
-      const {_id, userToken } = req;
-     
-      const response = await fetch(`${API_URL}/profile/` + _id, {
-        headers: {'Authorization': `Bearer ${userToken}`}
-      })
+      const response = await fetch(`${API_URL}/profile`, {
+        headers: { Authorization: `Bearer ${userToken}` },
+      });
       const json = await response.json();
       if (!response.ok) {
         throw json.error;
       }
       return json;
     } catch (e) {
-      console.log('blad', e)
       throw e;
     }
   },

@@ -4,7 +4,7 @@ const User = require("../models/userModel");
 const requireAuth = async (req, res, next) => {
   const { authorization } = req.headers;
 
-  if (!authorization) {
+  if (!authorization || !authorization.startsWith("Bearer")) {
     return res.status(401).json({ error: "Authorization token required" });
   }
 
@@ -12,7 +12,6 @@ const requireAuth = async (req, res, next) => {
 
   try {
     const { _id } = jwt.verify(token, process.env.SECRET);
-
     req.user = await User.findOne({ _id }).select("_id");
     next();
   } catch (e) {
@@ -20,4 +19,4 @@ const requireAuth = async (req, res, next) => {
   }
 };
 
-module.exports = requireAuth
+module.exports = requireAuth;
