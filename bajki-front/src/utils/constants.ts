@@ -1,1 +1,5 @@
-export const USER_LOGGED_IN: string = 'userLoggedIn';
+const constants = {
+  USER_TOKEN: "userToken",
+  USER_PROFILE: "userProfile",
+};
+export default constants;

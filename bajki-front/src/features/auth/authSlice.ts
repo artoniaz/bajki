@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { authActions } from "./authActions";
-import { USER_LOGGED_IN } from "../../utils/constants";
 import InitialAuthState from "../../models/InitialAuthState";
 import { Status } from "../../utils/stateStatus";
+import constants from "../../utils/constants";
 
 const initialState: InitialAuthState = {
   data: {
@@ -19,6 +19,9 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    setCredentials: (state, { payload }) => {
+      state.data.userProfile = payload;
+    },
     logoutUser: (state) => {
       state.loginStatus = Status.Initial;
       state.registerStatus = Status.Initial;
@@ -26,7 +29,8 @@ const authSlice = createSlice({
       state.data.userProfile = null;
       state.loginError = null;
       state.registerError = null;
-      localStorage.removeItem(USER_LOGGED_IN);
+      localStorage.removeItem(constants.USER_TOKEN);
+      localStorage.removeItem(constants.USER_PROFILE);
     },
   },
   extraReducers(builder) {
@@ -36,9 +40,11 @@ const authSlice = createSlice({
       state.registerError = null;
     });
     builder.addCase(authActions.registerUser.fulfilled, (state, action) => {
+      const userToken = action.payload;
       state.registerStatus = Status.Success;
       state.registerError = null;
-      state.data.userToken = action.payload;
+      state.data.userToken = userToken;
+      localStorage.setItem(constants.USER_TOKEN, userToken);
     });
     builder.addCase(authActions.registerUser.rejected, (state, action) => {
       state.registerStatus = Status.Failed;
@@ -51,9 +57,11 @@ const authSlice = createSlice({
       state.loginError = null;
     });
     builder.addCase(authActions.loginUser.fulfilled, (state, action) => {
+      const userToken = action.payload;
       state.loginStatus = Status.Success;
       state.loginError = null;
-      state.data.userToken = action.payload;
+      state.data.userToken = userToken;
+      localStorage.setItem(constants.USER_TOKEN, userToken);
     });
     builder.addCase(authActions.loginUser.rejected, (state, action) => {
       state.loginStatus = Status.Failed;
@@ -63,14 +71,16 @@ const authSlice = createSlice({
     // get user profile
     builder.addCase(authActions.getUserProfile.pending, (state) => {});
     builder.addCase(authActions.getUserProfile.fulfilled, (state, action) => {
-      state.loginStatus = Status.Success;
+      // state.loginStatus = Status.Success;
       //TODO: error handling
-      state.data.userProfile = action.payload.userProfile;
+      const userProfile = action.payload.userProfile;
+      state.data.userProfile = userProfile;
       state.data.userToken = action.payload.userToken;
+      localStorage.setItem(constants.USER_PROFILE, JSON.stringify(userProfile));
     });
     builder.addCase(authActions.getUserProfile.rejected, (state, action) => {});
   },
 });
 
-export const { logoutUser } = authSlice.actions;
+export const { setCredentials, logoutUser } = authSlice.actions;
 export default authSlice.reducer;

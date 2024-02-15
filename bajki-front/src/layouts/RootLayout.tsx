@@ -2,20 +2,28 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { Box } from "@mui/material";
 import { useEffect } from "react";
-import { USER_LOGGED_IN } from "../utils/constants";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { authActions } from "../features/auth/authActions";
+import { setCredentials } from "../features/auth/authSlice";
+import constants from "../utils/constants";
 
 const RootLayout = () => {
   const dispatch = useAppDispatch();
-  const { userToken } = useAppSelector((state) => state.auth.data);
+  const { userProfile, userToken } = useAppSelector((state) => state.auth.data);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem(USER_LOGGED_IN);
-    if (userToken || storedToken) {
-      const token = userToken ?? storedToken;
-      dispatch(authActions.getUserProfile(token!));
-    }
+    if (!userProfile) {
+      const user = localStorage.getItem(constants.USER_PROFILE);
+      if (user) {
+        dispatch(setCredentials(user));
+      } else {
+        if (userToken) {
+          const token = userToken;
+          dispatch(authActions.getUserProfile(token!));
+        }
+
+      }
+    } 
   }, [userToken]);
   return (
     <div>
