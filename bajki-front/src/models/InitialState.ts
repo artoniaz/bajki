@@ -1,9 +1,4 @@
-export enum Status {
-  Initial,
-  Loading,
-  Success,
-  Failed,
-}
+import { Status } from "../utils/stateStatus";
 
 export default interface InitialState<T> {
   data: T;

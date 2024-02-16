@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import createTaleReducer from './tales/createTale/createTaleSlice'
+import createTaleReducer from "./tales/createTale/createTaleSlice";
+import authReducer from "./auth/authSlice";
 
 export const store = configureStore({
   reducer: {
-    createTale: createTaleReducer
+    createTale: createTaleReducer,
+    auth: authReducer,
   },
 });
 

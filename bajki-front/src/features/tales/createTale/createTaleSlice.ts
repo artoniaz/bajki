@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import TaleModel from "../../../models/TaleModel";
-import InitialState, { Status } from "../../../models/InitialState";
 import { TaleThunk } from "./taleThunk";
+import InitialState from "../../../models/InitialState";
+import { Status } from "../../../utils/stateStatus";
 
 const initialState: InitialState<TaleModel> = {
   data: {
@@ -27,7 +28,6 @@ export const createTaleSlice = createSlice({
       state.data = action.payload;
     });
     builder.addCase(TaleThunk.createTale.rejected, (state, action) => {
-      console.log(state, action);
       state.status = Status.Failed;
       state.error = action.error.message!;
     });

@@ -7,23 +7,11 @@ import RootLayout from "./layouts/RootLayout";
 import Home from "./pages/Home";
 import AboutPage from "./pages/AboutPage";
 import NotFound from "./pages/NotFoudPage";
-import { NavItemsModel } from "./models/NavItemModel";
 import CreateTalePage from "./pages/CreateTalePage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
-export const navItems: NavItemsModel = {
-  home: {
-    path: "/",
-    content: "home",
-  },
-  about: {
-    path: "/about",
-    content: "o nas",
-  },
-  createTale: {
-    path: "/createTale",
-    content: "stwórz bajkę",
-  },
-};
+
 
 export const Router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +19,8 @@ export const Router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="about" element={<AboutPage />} />
       <Route path="createTale" element={<CreateTalePage />} />
+      <Route path="login" element={<Login />} />
+      <Route path="register" element={<Register />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
