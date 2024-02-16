@@ -3,7 +3,7 @@ import TaleModel from "../../../models/TaleModel";
 
 const API_URL = "/api/tales/";
 
-export const TaleThunk = {
+export const TaleActions = {
   createTale: createAsyncThunk("tales/createTale", async (taleReq: TaleModel) => {
     const response = await fetch(API_URL, {
       method: "POST",
