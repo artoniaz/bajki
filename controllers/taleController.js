@@ -4,6 +4,12 @@ const {
   createTaleChatCompletion,
 } = require("../openAi/createTaleChatCompletion");
 
+const getTalesByUser = async (req,res) => {
+  const user_id = req.body.user_id;
+  const tales = await Tale.find({user_id}).sort({createdAt: -1});
+  res.status(200).json(tales)
+}
+
 const getTale = async (req, res) => {
   const { id } = req.params;
 
@@ -19,9 +25,8 @@ const getTale = async (req, res) => {
 };
 
 const createTale = async (req, res) => {
-  req.body.content = await createTaleChatCompletion(req);
-
   try {
+    req.body.content = await createTaleChatCompletion(req);
     // don't save tale to db if !id
     if (req.body.user_id !== "") {
       const tale = await Tale.create(req.body);
@@ -36,6 +41,7 @@ const createTale = async (req, res) => {
 };
 
 module.exports = {
+  getTalesByUser,
   getTale,
   createTale,
 };
