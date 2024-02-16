@@ -55,6 +55,7 @@ const Login = () => {
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.errors.email}
         />
         <TextField
           id={PASSWORD}
@@ -65,6 +66,7 @@ const Login = () => {
           value={formik.values.password}
           onChange={formik.handleChange}
           error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.errors.password}
         />
         <LoadingButton
           type="submit"

@@ -1,8 +1,11 @@
 import * as yup from "yup";
 
 export const registerValidationSchema = yup.object().shape({
-  //TODO: add more effective validation
-  name: yup.string().required("Imię jest wymagane"),
-  email: yup.string().required("Email jest wymagany"),
+  name: yup
+    .string()
+    .min(3, "Minimum 3 znaki")
+    .max(50, "Zbyt wiele znaków")
+    .required("Imię jest wymagane"),
+  email: yup.string().email().required("Email jest wymagany"),
   password: yup.string().required("Hasło jest wymagane"),
 });
