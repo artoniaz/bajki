@@ -15,16 +15,17 @@ const RootLayout = () => {
     if (!userProfile) {
       const user = localStorage.getItem(constants.USER_PROFILE);
       if (user) {
-        dispatch(setCredentials(user));
+        const token = localStorage.getItem(constants.USER_TOKEN);
+        dispatch(setCredentials({user, token}));
       } else {
         if (userToken) {
-          const token = userToken;
-          dispatch(authActions.getUserProfile(token!));
+          dispatch(authActions.getUserProfile(userToken!));
         }
 
       }
     } 
   }, [userToken]);
+  
   return (
     <div>
       <Navbar />

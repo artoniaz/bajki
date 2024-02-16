@@ -12,8 +12,8 @@ import { Status } from "../utils/stateStatus";
 const Login = () => {
   const dispatch = useAppDispatch();
   const {
-    loginStatus,
-    loginError,
+    status,
+    error,
     data: { userProfile: userInfo },
   } = useAppSelector((state) => state.auth);
   const EMAIL = "email";
@@ -69,11 +69,10 @@ const Login = () => {
         <LoadingButton
           type="submit"
           variant="contained"
-          loading={loginStatus === Status.Loading}
+          loading={status === Status.Loading}
         >
           Zaloguj
         </LoadingButton>
-        {loginStatus === Status.Failed && <div>{loginError}</div>}
       </FormControl>
     </Center>
   );

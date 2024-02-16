@@ -13,8 +13,8 @@ import { navItems } from "../utils/navItems";
 const Register = () => {
   const dispatch = useAppDispatch();
   const {
-    registerStatus,
-    registerError,
+    status,
+    error,
     data: { userProfile: userInfo },
   } = useAppSelector((state) => state.auth);
 
@@ -80,11 +80,10 @@ const Register = () => {
         <LoadingButton
           type="submit"
           variant="contained"
-          loading={registerStatus === Status.Loading}
+          loading={status === Status.Loading}
         >
           Stwórz konto
         </LoadingButton>
-        {registerStatus === Status.Failed && <div>{registerError}</div>}
       </FormControl>
     </Center>
   );
