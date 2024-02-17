@@ -5,7 +5,7 @@ const {
 } = require("../openAi/createTaleChatCompletion");
 
 const getTalesByUser = async (req,res) => {
-  const user_id = req.body.user_id;
+  const user_id = req.user._id;
   const tales = await Tale.find({user_id}).sort({createdAt: -1});
   res.status(200).json(tales)
 }

@@ -15,6 +15,8 @@ const AuthBox = () => {
         </>
       ) : (
         <>
+
+          <NavLinkButton to="/myTales" text="Moje bajki" />
           {userProfile.name}
           <Button
             sx={{ color: "white" }}

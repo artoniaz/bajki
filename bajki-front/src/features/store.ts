@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import createTaleReducer from "./tales/createTale/createTaleSlice";
 import authReducer from "./auth/authSlice";
+import getTalesReducer from "./tales/getTales/getTalesSlice";
 
 export const store = configureStore({
   reducer: {
-    createTale: createTaleReducer,
     auth: authReducer,
+    createTale: createTaleReducer,
+    getTales: getTalesReducer,
   },
 });
 

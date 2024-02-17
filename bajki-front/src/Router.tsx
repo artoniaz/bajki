@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFoudPage";
 import CreateTalePage from "./pages/CreateTalePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import MyTales from "./pages/myTales/myTalesPage";
 
 
 
@@ -21,6 +22,7 @@ export const Router = createBrowserRouter(
       <Route path="createTale" element={<CreateTalePage />} />
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
+      <Route path="myTales" element={<MyTales />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
