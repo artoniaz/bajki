@@ -4,8 +4,8 @@ import TaleModel from "../../../models/TaleModel";
 import { Status } from "../../../utils/stateStatus";
 import taleActions from "./talesActions";
 
-const initialState:InitialState<TaleModel | null> = {
-    data: null,
+const initialState:InitialState<TaleModel[]> = {
+    data: [],
     status: Status.Initial,
     error: null,
 }

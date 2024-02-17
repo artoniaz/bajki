@@ -3,7 +3,7 @@ import TaleModel from "../../models/TaleModel";
 const API_URL = "/api/tales";
 
 const taleService = {
-  getTalesByUser: async (userToken: string): Promise<TaleModel> => {
+  getTalesByUser: async (userToken: string): Promise<TaleModel[]> => {
     try {
       const response = await fetch(`${API_URL}/`, {
         headers: { Authorization: `Bearer ${userToken}` },

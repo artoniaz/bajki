@@ -15,7 +15,7 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <AppBar component="nav">
+    <AppBar position="sticky">
       <Toolbar>
         <IconButton
           color="inherit"
