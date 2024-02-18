@@ -56,7 +56,7 @@ const Register = () => {
           value={formik.values.name}
           onChange={formik.handleChange}
           error={formik.touched.name && Boolean(formik.errors.name)}
-          helperText={formik.errors.name}
+          helperText={formik.touched.name && formik.errors.name}
         />
         <TextField
           id="email"
@@ -67,7 +67,7 @@ const Register = () => {
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.errors.email}
+          helperText={formik.touched.email && formik.errors.email}
         />
         <TextField
           id="password"
@@ -78,7 +78,7 @@ const Register = () => {
           value={formik.values.password}
           onChange={formik.handleChange}
           error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.errors.password}
+          helperText={formik.touched.password && formik.errors.password}
         />
         <LoadingButton
           type="submit"

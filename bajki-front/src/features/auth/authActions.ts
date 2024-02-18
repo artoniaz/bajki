@@ -27,4 +27,5 @@ export const authActions = {
       return { userProfile, userToken };
     }
   ),
+  logout: createAsyncThunk("user/logout", async () => {}),
 };

@@ -1,5 +1,4 @@
 import TaleModel from "../../../models/TaleModel";
-import { TaleThunk } from "./taleThunk";
 import { FormControl, MenuItem, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useFormik } from "formik";
@@ -7,23 +6,24 @@ import { useEffect } from "react";
 import { createTaleValidationSchema } from "./createTaleValidationSchema";
 import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import { Status } from "../../../utils/stateStatus";
+import taleActions from "../talesActions";
 
 const CreateTaleForm = () => {
   const dispatch = useAppDispatch();
 
-  const {data: {content}, status} = useAppSelector(
-    (state) => state.createTale
-  );
+  const { data, status } = useAppSelector((state) => state.createTale);
+  const { userProfile } = useAppSelector((state) => state.auth.data);
 
   const formik = useFormik({
     initialValues: {
+      user_id: userProfile?.id ?? "",
       child_name: "",
       age: 0,
       topic: "",
     },
     validationSchema: createTaleValidationSchema,
     onSubmit: (values: TaleModel) => {
-      dispatch(TaleThunk.createTale(values));
+      dispatch(taleActions.createTale(values));
     },
   });
 
@@ -86,7 +86,7 @@ const CreateTaleForm = () => {
           Stwórz bajkę
         </LoadingButton>
       </FormControl>
-      {status === Status.Success && content}
+      {status === Status.Success && data!.content}
     </>
   );
 };

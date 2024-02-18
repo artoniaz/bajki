@@ -1,16 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import TaleModel from "../../../models/TaleModel";
-import { TaleThunk } from "./taleThunk";
 import InitialState from "../../../models/InitialState";
 import { Status } from "../../../utils/stateStatus";
+import taleActions from "../talesActions";
 
-const initialState: InitialState<TaleModel> = {
-  data: {
-    age: 0,
-    child_name: "",
-    topic: "",
-    content: "",
-  },
+const initialState: InitialState<TaleModel | null> = {
+  data: null,
   status: Status.Initial,
   error: null,
 };
@@ -20,14 +15,14 @@ export const createTaleSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(TaleThunk.createTale.pending, (state) => {
+    builder.addCase(taleActions.createTale.pending, (state) => {
       state.status = Status.Loading;
     });
-    builder.addCase(TaleThunk.createTale.fulfilled, (state, action) => {
+    builder.addCase(taleActions.createTale.fulfilled, (state, action) => {
       state.status = Status.Success;
       state.data = action.payload;
     });
-    builder.addCase(TaleThunk.createTale.rejected, (state, action) => {
+    builder.addCase(taleActions.createTale.rejected, (state, action) => {
       state.status = Status.Failed;
       state.error = action.error.message!;
     });
