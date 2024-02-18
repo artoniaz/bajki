@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import InitialState from "../../../models/InitialState";
 import TaleModel from "../../../models/TaleModel";
 import { Status } from "../../../utils/stateStatus";
-import taleActions from "./talesActions";
+import taleActions from "../talesActions";
 
 const initialState:InitialState<TaleModel[]> = {
     data: [],

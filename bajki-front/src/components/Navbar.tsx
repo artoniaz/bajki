@@ -8,12 +8,9 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import NavLinkButton from "./NavLinkButton";
 import { navItems } from "../utils/navItems";
-import { useAppDispatch } from "../hooks/reduxHooks";
 import AuthBox from "./AuthBox";
 
 const Navbar = () => {
-  const dispatch = useAppDispatch();
-
   return (
     <AppBar position="sticky">
       <Toolbar>

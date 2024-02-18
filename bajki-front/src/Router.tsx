@@ -10,7 +10,7 @@ import NotFound from "./pages/NotFoudPage";
 import CreateTalePage from "./pages/CreateTalePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import TalesFeed from "./pages/myTales/TalesFeed";
+import TalesFeed from "./features/tales/getTales/TalesFeed";
 
 
 

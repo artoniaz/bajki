@@ -23,14 +23,6 @@ const authSlice = createSlice({
       state.data.userProfile = JSON.parse(payload.user);
       state.data.userToken = payload.token;
     },
-    logoutUser: (state) => {
-      state.status = Status.Initial;
-      state.data.userToken = "";
-      state.data.userProfile = null;
-      state.error = null;
-      localStorage.removeItem(constants.USER_TOKEN);
-      localStorage.removeItem(constants.USER_PROFILE);
-    },
   },
   extraReducers(builder) {
     // register user
@@ -50,7 +42,7 @@ const authSlice = createSlice({
       state.error = action.error.message!;
       customEnqueueSnackbar({
         message: action.error.message!,
-        variant: 'error',
+        variant: "error",
       });
     });
 
@@ -70,7 +62,7 @@ const authSlice = createSlice({
       state.error = action.error.message!;
       customEnqueueSnackbar({
         message: action.error.message!,
-        variant: 'error',
+        variant: "error",
       });
     });
 
@@ -92,11 +84,21 @@ const authSlice = createSlice({
       state.error = action.error.message!;
       customEnqueueSnackbar({
         message: action.error.message!,
-        variant: 'error',
+        variant: "error",
       });
+    });
+
+    //log out
+    builder.addCase(authActions.logout.fulfilled, (state) => {
+      state.status = Status.Initial;
+      state.data.userToken = "";
+      state.data.userProfile = null;
+      state.error = null;
+      localStorage.removeItem(constants.USER_TOKEN);
+      localStorage.removeItem(constants.USER_PROFILE);
     });
   },
 });
 
-export const { setCredentials, logoutUser } = authSlice.actions;
+export const { setCredentials } = authSlice.actions;
 export default authSlice.reducer;

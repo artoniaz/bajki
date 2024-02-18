@@ -17,6 +17,23 @@ const taleService = {
       throw e;
     }
   },
+  createTale: async (taleReq: TaleModel) => {
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify(taleReq),
+        headers: { "Content-Type": "application/json" },
+      });
+      
+      const json = await response.json();
+      if (!response.ok) {
+        throw json.error;
+      }
+      return json;
+    } catch (e) {
+      throw e;
+    }
+  },
 };
 
 export default taleService;

@@ -1,5 +1,4 @@
 import TaleModel from "../../../models/TaleModel";
-import { TaleActions } from "./taleActions";
 import { FormControl, MenuItem, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useFormik } from "formik";
@@ -7,6 +6,7 @@ import { useEffect } from "react";
 import { createTaleValidationSchema } from "./createTaleValidationSchema";
 import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import { Status } from "../../../utils/stateStatus";
+import taleActions from "../talesActions";
 
 const CreateTaleForm = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +23,7 @@ const CreateTaleForm = () => {
     },
     validationSchema: createTaleValidationSchema,
     onSubmit: (values: TaleModel) => {
-      dispatch(TaleActions.createTale(values));
+      dispatch(taleActions.createTale(values));
     },
   });
 

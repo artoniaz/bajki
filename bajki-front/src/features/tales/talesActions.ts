@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import taleService from "../taleService";
-import constants from "../../../utils/constants";
+import taleService from "./taleService";
+import constants from "../../utils/constants";
+import TaleModel from "../../models/TaleModel";
 
 const taleActions = {
   getTalesByUser: createAsyncThunk(
@@ -11,6 +12,10 @@ const taleActions = {
       return tales;
     }
   ),
+  createTale: createAsyncThunk("tales/createTale", async (taleReq: TaleModel) => {
+    const tale = await taleService.createTale(taleReq);
+    return tale;
+  }),
 };
 
 export default taleActions;

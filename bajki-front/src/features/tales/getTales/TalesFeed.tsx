@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useAppDispatch } from "../../hooks/reduxHooks";
-import taleActions from "../../features/tales/getTales/talesActions";
+import { useAppDispatch } from "../../../hooks/reduxHooks";
+import taleActions from "../talesActions";
 import { Box, Stack, Typography } from "@mui/material";
-import Sidebar from "../../components/Sidebar";
-import TalesContainer from "../../components/TalesContainer";
+import Sidebar from "../../../components/Sidebar";
+import TalesContainer from "../../../components/TalesContainer";
 
 const TalesFeed = () => {
   const dispatch = useAppDispatch();
