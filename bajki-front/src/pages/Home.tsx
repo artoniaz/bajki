@@ -1,8 +1,8 @@
-import { Box, Grid, Typography } from "@mui/material";
+import {  Grid } from "@mui/material";
 import LogoBox from "../components/LogoBox";
-import CreateTaleForm from "../features/tales/createTale/CreateTaleForm";
 import HomePageInfoBox from "../components/HomePageInfoBox";
 import BackgroundImageBox from "../components/BackgroundImageBox";
+import { Outlet } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -27,7 +27,7 @@ const Home = () => {
           alignItems="flex-end"
           justifyContent="flex-end"
         >
-          <CreateTaleForm />
+          <Outlet />
         </Grid>
       </Grid>
     </Grid>

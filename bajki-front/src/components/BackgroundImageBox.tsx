@@ -8,7 +8,7 @@ const BackgroundImageBox = () => {
         width: "100%",
         maxWidth: "3400px",
         height: "100vh",
-        objectFit: "cover",
+        // objectFit: "cover",
         margin: "auto",
       }}
       alt="Children reading, having fun."
