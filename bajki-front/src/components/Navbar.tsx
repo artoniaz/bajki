@@ -12,7 +12,7 @@ import AuthBox from "./AuthBox";
 
 const Navbar = () => {
   return (
-    <AppBar position="sticky">
+    <AppBar>
       <Toolbar>
         <IconButton
           color="inherit"

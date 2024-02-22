@@ -1,5 +1,11 @@
 import TaleModel from "../../../models/TaleModel";
-import { FormControl, MenuItem, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  MenuItem,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useFormik } from "formik";
 import { useEffect } from "react";
@@ -34,9 +40,19 @@ const CreateTaleForm = () => {
   }, [status]);
 
   return (
-    <>
-      <Typography sx={{ typography: { sm: "h5", md: "h3" } }} color="primary">
-        Wygeneruj bajkę
+    <Box
+      bgcolor="rgba(0,0,0,0.4)"
+      sx={{ borderRadius: 5 }}
+      pt={2}
+      pb={4}
+      px={6}
+      display='flex'
+      flexDirection='column'
+      alignItems='strech'
+      maxWidth='450px'
+    >
+      <Typography variant="h2" alignSelf='center'>
+        Stwórz bajkę
       </Typography>
       <FormControl
         component={"form"}
@@ -87,7 +103,7 @@ const CreateTaleForm = () => {
         </LoadingButton>
       </FormControl>
       {status === Status.Success && data!.content}
-    </>
+    </Box>
   );
 };
 
