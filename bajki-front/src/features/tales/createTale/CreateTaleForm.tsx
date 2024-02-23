@@ -3,21 +3,21 @@ import {
   Box,
   FormControl,
   MenuItem,
-  TextField,
   Typography,
 } from "@mui/material";
-import { LoadingButton } from "@mui/lab";
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import { createTaleValidationSchema } from "./createTaleValidationSchema";
 import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import { Status } from "../../../utils/stateStatus";
 import taleActions from "../talesActions";
+import StyledTextField from "../../../components/StyledTextField";
+import StyledLoadingButton from "../../../components/StyledLoadingButton";
 
 const CreateTaleForm = () => {
   const dispatch = useAppDispatch();
 
-  const { data, status } = useAppSelector((state) => state.createTale);
+  const { status } = useAppSelector((state) => state.createTale);
   const { userProfile } = useAppSelector((state) => state.auth.data);
 
   const formik = useFormik({
@@ -59,7 +59,7 @@ const CreateTaleForm = () => {
         sx={{ py: 4 }}
         onSubmit={(val) => formik.handleSubmit(val)}
       >
-        <TextField
+        <StyledTextField
           id="child_name"
           name="child_name"
           label="Imię *"
@@ -69,7 +69,7 @@ const CreateTaleForm = () => {
           onChange={formik.handleChange}
           error={formik.touched.child_name && Boolean(formik.errors.child_name)}
         />
-        <TextField
+        <StyledTextField
           id="age"
           name="age"
           label="Wiek *"
@@ -79,7 +79,7 @@ const CreateTaleForm = () => {
           onChange={formik.handleChange}
           error={formik.touched.age && Boolean(formik.errors.age)}
         />
-        <TextField
+        <StyledTextField
           select
           id="topic"
           name="topic"
@@ -93,16 +93,15 @@ const CreateTaleForm = () => {
           <MenuItem value="space">Kosmos</MenuItem>
           <MenuItem value="pokemon">Pokemon</MenuItem>
           <MenuItem value="cats">Koty</MenuItem>
-        </TextField>
-        <LoadingButton
+        </StyledTextField>
+        <StyledLoadingButton
           type="submit"
           variant="contained"
           loading={status === Status.Loading}
         >
           Stwórz bajkę
-        </LoadingButton>
+        </StyledLoadingButton>
       </FormControl>
-      {status === Status.Success && data!.content}
     </Box>
   );
 };
