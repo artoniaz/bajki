@@ -18,12 +18,12 @@ const AuthBox = () => {
     <Box>
       {!userProfile ? (
         <>
-          <NavLinkButton to="/login" text="Zaloguj" />
-          <NavLinkButton to="/register" text="Stwórz konto" />
+          <NavLinkButton to="/login" text="Zaloguj" isActive={true}/>
+          <NavLinkButton to="/register" text="Stwórz konto" isActive={true}/>
         </>
       ) : (
         <>
-          <NavLinkButton to="/myTales" text="Moje bajki" />
+          <NavLinkButton to="/myTales" text="Moje bajki" isActive={true}/>
           {userProfile.name}
           <Button sx={{ color: "white" }} onClick={() => handleLogout()}>
             Wyloguj

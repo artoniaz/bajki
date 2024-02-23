@@ -1,19 +1,16 @@
-import {
-  AppBar,
-  Box,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import NavLinkButton from "./NavLinkButton";
 import { navItems } from "../utils/navItems";
-import AuthBox from "./AuthBox";
+import LogoBox from "./LogoBox";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  const { pathname } = useLocation();
+
   return (
-    <AppBar>
-      <Toolbar>
+    <AppBar sx={{ backgroundColor: "rgba(0,0,0,0.4)", px: 8 }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <IconButton
           color="inherit"
           aria-label="open drawer"
@@ -23,24 +20,22 @@ const Navbar = () => {
         >
           <MenuIcon />
         </IconButton>
-        <Typography
-          variant="h6"
-          component="div"
-          color="common.white"
-          sx={{ mr: 8, display: { xs: "none", sm: "block" } }}
+        <LogoBox logoType="noTitle" width={100} height={67} />
+        <Box
+          sx={{
+            display: { xs: "none", sm: "block" },
+          }}
         >
-          BAJKI
-        </Typography>
-        <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
           {Object.values(navItems).map((navItem) => (
             <NavLinkButton
               key={navItem.path}
               to={navItem.path}
               text={navItem.content}
+              isActive={pathname === navItem.path}
             />
           ))}
         </Box>
-        <AuthBox />
+        {/* <AuthBox /> */}
       </Toolbar>
     </AppBar>
   );

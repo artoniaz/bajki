@@ -25,7 +25,7 @@ const Home = () => {
           justifyContent="flex-end"
           height="100%"
         >
-          <LogoBox logoType="title" />
+          <LogoBox logoType="title" width={440} height={300}  />
           <HomePageInfoBox />
         </Grid>
         <Grid

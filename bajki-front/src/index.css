@@ -27,3 +27,13 @@ a {
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
+
+.navLinkBtnActive::before {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  height: 2px;
+  background-color: #fff;
+}
