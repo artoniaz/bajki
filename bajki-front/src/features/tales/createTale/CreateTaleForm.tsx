@@ -1,10 +1,5 @@
 import TaleModel from "../../../models/TaleModel";
-import {
-  Box,
-  FormControl,
-  MenuItem,
-  Typography,
-} from "@mui/material";
+import { Box, FormControl, MenuItem, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import { createTaleValidationSchema } from "./createTaleValidationSchema";
@@ -13,6 +8,7 @@ import { Status } from "../../../utils/stateStatus";
 import taleActions from "../talesActions";
 import StyledTextField from "../../../components/StyledTextField";
 import StyledLoadingButton from "../../../components/StyledLoadingButton";
+import FormBox from "../../../components/FormBox";
 
 const CreateTaleForm = () => {
   const dispatch = useAppDispatch();
@@ -40,18 +36,8 @@ const CreateTaleForm = () => {
   }, [status]);
 
   return (
-    <Box
-      bgcolor="rgba(0,0,0,0.4)"
-      sx={{ borderRadius: 5 }}
-      pt={2}
-      pb={4}
-      px={6}
-      display='flex'
-      flexDirection='column'
-      alignItems='strech'
-      maxWidth='450px'
-    >
-      <Typography variant="h2" alignSelf='center'>
+    <FormBox>
+      <Typography variant="h2" alignSelf="center">
         Stwórz bajkę
       </Typography>
       <FormControl
@@ -102,7 +88,7 @@ const CreateTaleForm = () => {
           Stwórz bajkę
         </StyledLoadingButton>
       </FormControl>
-    </Box>
+    </FormBox>
   );
 };
 

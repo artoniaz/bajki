@@ -1,13 +1,17 @@
-import { FormControl, TextField } from "@mui/material";
+import { FormControl, Typography } from "@mui/material";
 import { useFormik } from "formik";
-import { LoadingButton } from "@mui/lab";
 import { authActions } from "../features/auth/authActions";
 import { useAppSelector, useAppDispatch } from "../hooks/reduxHooks";
 import { loginValidationSchema } from "../formValidationSchams/loginValidationSchema";
 import { Navigate } from "react-router-dom";
 import { navItems } from "../utils/navItems";
-import Center from "../components/Center";
 import { Status } from "../utils/stateStatus";
+import FormBox from "../components/FormBox";
+import StyledTextField from "../components/StyledTextField";
+import StyledLoadingButton from "../components/StyledLoadingButton";
+import Link from "@mui/material/Link";
+import { Link as RouterLink } from "react-router-dom";
+import { useTheme } from "@emotion/react";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -39,43 +43,63 @@ const Login = () => {
   }
 
   return (
-    <Center>
+    <FormBox>
+      <Typography variant="h2" alignSelf="center">
+        Zaloguj
+      </Typography>
       <FormControl
         component={"form"}
         onSubmit={(val) => formik.handleSubmit(val)}
+        sx={{ py: 4 }}
       >
-        <h3>Log in</h3>
-        <TextField
+        <StyledTextField
           id={EMAIL}
           name={EMAIL}
           label="Email *"
           type={EMAIL}
-          sx={{ mb: 2 }}
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
         />
-        <TextField
+        <StyledTextField
           id={PASSWORD}
           name={PASSWORD}
           label="Password *"
           type={PASSWORD}
-          sx={{ mb: 2 }}
+          sx={{ my: 2 }}
           value={formik.values.password}
           onChange={formik.handleChange}
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
         />
-        <LoadingButton
+        <StyledLoadingButton
           type="submit"
           variant="contained"
           loading={status === Status.Loading}
         >
           Zaloguj
-        </LoadingButton>
+        </StyledLoadingButton>
       </FormControl>
-    </Center>
+      <Link
+        style={{ cursor: "pointer" }}
+        variant="body2"
+        underline="always"
+        color="#fff"
+      >
+        Zaloguj
+      </Link>
+      <RouterLink to="/register">
+        <Link
+          style={{ cursor: "pointer" }}
+          variant="body2"
+          underline="always"
+          color="#fff"
+        >
+          Załóż konto
+        </Link>
+      </RouterLink>
+    </FormBox>
   );
 };
 
