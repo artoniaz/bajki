@@ -1,5 +1,5 @@
 import { Link as RouterLink } from "react-router-dom";
-import Link from "@mui/material/Link";
+import { Typography } from "@mui/material";
 
 export interface RouterTextButtonProps {
   to: string;
@@ -9,14 +9,12 @@ export interface RouterTextButtonProps {
 const RouterTextButton = ({ to, text }: RouterTextButtonProps) => {
   return (
     <RouterLink to={`/${to}`}>
-      <Link
-        style={{ cursor: "pointer" }}
+      <Typography
+        sx={{ cursor: "pointer", textDecoration: 'underline' }}
         variant="body2"
-        underline="always"
-        color="#fff"
       >
         {text}
-      </Link>
+      </Typography>
     </RouterLink>
   );
 };

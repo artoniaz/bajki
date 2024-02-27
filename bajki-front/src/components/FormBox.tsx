@@ -1,6 +1,14 @@
 import { Box } from "@mui/material";
+import { Status } from "../utils/stateStatus";
+import ErrorBox from "./ErrorBox";
 
-const FormBox = ({ children }: any) => {
+interface FormBoxProps {
+  children: any;
+  status: Status;
+  error: string | null;
+}
+
+const FormBox = ({ children, status, error }: FormBoxProps) => {
   return (
     <Box
       bgcolor="rgba(0,0,0,0.4)"
@@ -14,6 +22,7 @@ const FormBox = ({ children }: any) => {
       width='100%'
     >
       {children}{" "}
+      {status === Status.Failed && <ErrorBox errorMessage={error!} />}
     </Box>
   );
 };

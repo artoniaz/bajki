@@ -13,7 +13,9 @@ const initialState: InitialState<TaleModel | null> = {
 export const createTaleSlice = createSlice({
   name: "createTale",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: () => initialState,
+  },
   extraReducers(builder) {
     builder.addCase(taleActions.createTale.pending, (state) => {
       state.status = Status.Loading;
@@ -29,4 +31,5 @@ export const createTaleSlice = createSlice({
   },
 });
 
+export const { reset } = createTaleSlice.actions;
 export default createTaleSlice.reducer;

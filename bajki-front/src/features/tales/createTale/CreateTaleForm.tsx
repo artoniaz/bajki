@@ -1,5 +1,5 @@
 import TaleModel from "../../../models/TaleModel";
-import { Box, FormControl, MenuItem, Typography } from "@mui/material";
+import { FormControl, MenuItem, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import { createTaleValidationSchema } from "./createTaleValidationSchema";
@@ -9,11 +9,12 @@ import taleActions from "../talesActions";
 import StyledTextField from "../../../components/StyledTextField";
 import StyledLoadingButton from "../../../components/StyledLoadingButton";
 import FormBox from "../../../components/FormBox";
+import { reset } from "./createTaleSlice";
 
 const CreateTaleForm = () => {
   const dispatch = useAppDispatch();
 
-  const { status } = useAppSelector((state) => state.createTale);
+  const { status, error } = useAppSelector((state) => state.createTale);
   const { userProfile } = useAppSelector((state) => state.auth.data);
 
   const formik = useFormik({
@@ -30,13 +31,14 @@ const CreateTaleForm = () => {
   });
 
   useEffect(() => {
-    if (status === Status.Success) {
+    return () => {
       formik.resetForm();
-    }
-  }, [status]);
+      dispatch(reset());
+    };
+  }, []);
 
   return (
-    <FormBox>
+    <FormBox status={status} error={error}>
       <Typography variant="h2" alignSelf="center">
         Stwórz bajkę
       </Typography>

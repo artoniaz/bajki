@@ -43,58 +43,60 @@ const Register = () => {
   }
 
   return (
-    <FormBox>
-      <FormControl
-        component={"form"}
-        onSubmit={(val) => formik.handleSubmit(val)}
-        sx={{ py: 4 }}
-      >
-        <Typography variant="h2" alignSelf="center">
-          Załóż konto
-        </Typography>
-        <StyledTextField
-          id="name"
-          name="name"
-          label="Name *"
-          type="name"
-          sx={{ my: 2 }}
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          error={formik.touched.name && Boolean(formik.errors.name)}
-          helperText={formik.touched.name && formik.errors.name}
-        />
-        <StyledTextField
-          id="email"
-          name="email"
-          label="Email *"
-          type="email"
-          sx={{ mb: 2 }}
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
-        />
-        <StyledTextField
-          id="password"
-          name="password"
-          label="Password *"
-          type="password"
-          sx={{ mb: 2 }}
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-        />
-        <StyledLoadingButton
-          type="submit"
-          variant="contained"
-          loading={status === Status.Loading}
+    <>
+      <FormBox status={status} error={error}>
+        <FormControl
+          component={"form"}
+          onSubmit={(val) => formik.handleSubmit(val)}
+          sx={{ py: 4 }}
         >
-          Stwórz konto
-        </StyledLoadingButton>
-      </FormControl>
+          <Typography variant="h2" alignSelf="center">
+            Załóż konto
+          </Typography>
+          <StyledTextField
+            id="name"
+            name="name"
+            label="Name *"
+            type="name"
+            sx={{ my: 2 }}
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            error={formik.touched.name && Boolean(formik.errors.name)}
+            helperText={formik.touched.name && formik.errors.name}
+          />
+          <StyledTextField
+            id="email"
+            name="email"
+            label="Email *"
+            type="email"
+            sx={{ mb: 2 }}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
+          />
+          <StyledTextField
+            id="password"
+            name="password"
+            label="Password *"
+            type="password"
+            sx={{ mb: 2 }}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
+          />
+          <StyledLoadingButton
+            type="submit"
+            variant="contained"
+            loading={status === Status.Loading}
+          >
+            Stwórz konto
+          </StyledLoadingButton>
+        </FormControl>
+      </FormBox>
       <RouterTextButton to="login" text="Masz już konto? Zaloguj się" />
-    </FormBox>
+    </>
   );
 };
 
