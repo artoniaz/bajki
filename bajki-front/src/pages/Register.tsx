@@ -1,14 +1,16 @@
-import { FormControl, TextField, dividerClasses } from "@mui/material";
+import { FormControl, Typography } from "@mui/material";
 import { useFormik } from "formik";
-import { LoadingButton } from "@mui/lab";
 import { authActions } from "../features/auth/authActions";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { registerValidationSchema } from "../formValidationSchams/registerValidationSchama";
 import AuthCredentialsModel from "../models/AuthCredentialsModel";
-import Center from "../components/Center";
-import { Status } from "../utils/stateStatus";
 import { Navigate } from "react-router-dom";
 import { navItems } from "../utils/navItems";
+import FormBox from "../components/FormBox";
+import StyledTextField from "../components/StyledTextField";
+import { Status } from "../utils/stateStatus";
+import RouterTextButton from "../components/RouterTextBtn";
+import StyledLoadingButton from "../components/StyledLoadingButton";
 
 const Register = () => {
   const dispatch = useAppDispatch();
@@ -41,24 +43,27 @@ const Register = () => {
   }
 
   return (
-    <Center>
+    <FormBox>
       <FormControl
         component={"form"}
         onSubmit={(val) => formik.handleSubmit(val)}
+        sx={{ py: 4 }}
       >
-        <h3>Sign up</h3>
-        <TextField
+        <Typography variant="h2" alignSelf="center">
+          Załóż konto
+        </Typography>
+        <StyledTextField
           id="name"
           name="name"
           label="Name *"
           type="name"
-          sx={{ mb: 2 }}
+          sx={{ my: 2 }}
           value={formik.values.name}
           onChange={formik.handleChange}
           error={formik.touched.name && Boolean(formik.errors.name)}
           helperText={formik.touched.name && formik.errors.name}
         />
-        <TextField
+        <StyledTextField
           id="email"
           name="email"
           label="Email *"
@@ -69,7 +74,7 @@ const Register = () => {
           error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
         />
-        <TextField
+        <StyledTextField
           id="password"
           name="password"
           label="Password *"
@@ -80,15 +85,16 @@ const Register = () => {
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
         />
-        <LoadingButton
+        <StyledLoadingButton
           type="submit"
           variant="contained"
           loading={status === Status.Loading}
         >
           Stwórz konto
-        </LoadingButton>
+        </StyledLoadingButton>
       </FormControl>
-    </Center>
+      <RouterTextButton to="login" text="Masz już konto? Zaloguj się" />
+    </FormBox>
   );
 };
 

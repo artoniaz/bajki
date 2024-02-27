@@ -9,9 +9,7 @@ import { Status } from "../utils/stateStatus";
 import FormBox from "../components/FormBox";
 import StyledTextField from "../components/StyledTextField";
 import StyledLoadingButton from "../components/StyledLoadingButton";
-import Link from "@mui/material/Link";
-import { Link as RouterLink } from "react-router-dom";
-import { useTheme } from "@emotion/react";
+import RouterTextButton from "../components/RouterTextBtn";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -81,24 +79,8 @@ const Login = () => {
           Zaloguj
         </StyledLoadingButton>
       </FormControl>
-      <Link
-        style={{ cursor: "pointer" }}
-        variant="body2"
-        underline="always"
-        color="#fff"
-      >
-        Zaloguj
-      </Link>
-      <RouterLink to="/register">
-        <Link
-          style={{ cursor: "pointer" }}
-          variant="body2"
-          underline="always"
-          color="#fff"
-        >
-          Załóż konto
-        </Link>
-      </RouterLink>
+      <RouterTextButton to="" text="Zapomniałem hasła"/>
+      <RouterTextButton to="register" text="Nie masz konta? Załóż konto"/>
     </FormBox>
   );
 };
