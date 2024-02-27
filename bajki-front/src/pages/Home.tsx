@@ -13,24 +13,25 @@ const Home = () => {
   );
 
   return (
-    <Grid container position='relative'>
+    <Grid container position="relative">
       <BackgroundImageBox />
       {createTaleStatus === Status.Success && <ShortTaleContainer />}
       <Grid container position="absolute" p={10} height="100vh">
         <Grid
           item
-          md={6}
+          md={5}
           display="flex"
           flexDirection="column"
           justifyContent="flex-end"
           height="100%"
         >
-          <LogoBox logoType="title" width={440} height={300}  />
+          <LogoBox logoType="title" width={'100%'} height={'300px'} />
           <HomePageInfoBox />
         </Grid>
+        <Grid item md={3} />
         <Grid
           item
-          md={6}
+          md={4}
           display="flex"
           alignItems="flex-end"
           justifyContent="flex-end"

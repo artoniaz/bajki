@@ -11,7 +11,7 @@ const FormBox = ({ children }: any) => {
       display="flex"
       flexDirection="column"
       alignItems="strech"
-      maxWidth="450px"
+      width='100%'
     >
       {children}{" "}
     </Box>

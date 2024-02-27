@@ -3,16 +3,17 @@ import React from "react";
 
 interface LogoBoxProps {
   logoType: "title" | "noTitle";
-  width: number;
-  height: number;
+  width: string;
+  height: string;
 }
 
 const LogoBox = ({ logoType, width, height }: LogoBoxProps) => {
   return (
     <Box
       component="img"
-      width={`${width}px`}
-      height={`${height}px`}
+      width={width}
+      maxWidth='500px'
+      height={height}
       alt="Logo with title"
       src={require(`../images/logo${logoType}.png`)}
     />

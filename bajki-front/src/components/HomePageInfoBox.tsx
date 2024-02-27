@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 
 const HomePageInfoBox = () => {
   return (
-    <Box pt={6} maxWidth="500px">
+    <Box pt={6}>
       <Typography variant="h1" pb={6}>
         Personlizowane bajki
       </Typography>

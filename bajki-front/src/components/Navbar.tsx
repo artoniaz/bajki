@@ -20,7 +20,7 @@ const Navbar = () => {
         >
           <MenuIcon />
         </IconButton>
-        <LogoBox logoType="noTitle" width={100} height={67} />
+        <LogoBox logoType="noTitle" width={'100px'} height={'67px'} />
         <Box
           sx={{
             display: { xs: "none", sm: "block" },
