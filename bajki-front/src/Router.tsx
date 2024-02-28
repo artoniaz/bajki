@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import TalesFeed from "./features/tales/getTales/TalesFeed";
 import CreateTaleForm from "./features/tales/createTale/CreateTaleForm";
 import Register from "./pages/Register";
+import MyProfile from "./pages/MyProfile";
 
 export const Router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ export const Router = createBrowserRouter(
         <Route path="about" element={<AboutPage />} />
       </Route>
       <Route path="myTales" element={<TalesFeed />} />
+      <Route path="myProfile" element={<MyProfile />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )

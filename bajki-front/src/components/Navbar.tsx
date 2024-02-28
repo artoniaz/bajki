@@ -36,7 +36,7 @@ const Navbar = () => {
                 isActive={pathname === navItem.path}
               />
             )),
-            <AuthBox />,
+            <AuthBox key='authBox' />,
           ]}
         </Box>
       </Toolbar>
