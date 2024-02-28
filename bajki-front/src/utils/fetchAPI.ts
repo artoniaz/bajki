@@ -5,10 +5,10 @@ export const fetchAPI = async <T>({
 }: {
   url: string;
   req: T;
-  method?: string;
+  method: string;
 }) =>
   await fetch(url, {
-    method: method || "GET",
+    method: method,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(req),
   });

@@ -8,10 +8,10 @@ const taleService = {
       const response = await fetch(`${API_URL}/`, {
         headers: { Authorization: `Bearer ${userToken}` },
       });
-      const json = await response.json();
       if (!response.ok) {
-        throw json.error;
+        throw Error('Błąd pobierania bajek.');
       }
+      const json = await response.json();
       return json;
     } catch (e) {
       throw e;
@@ -24,12 +24,10 @@ const taleService = {
         body: JSON.stringify(taleReq),
         headers: { "Content-Type": "application/json" },
       });
-      
-      const json = await response.json();
       if (!response.ok) {
-        throw json.error;
+        throw Error('Wystąpił błąd tworzenia bajki');
       }
-      return json;
+      return response.json();
     } catch (e) {
       throw e;
     }

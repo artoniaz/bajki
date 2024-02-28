@@ -1,17 +1,20 @@
 import TaleModel from "../../../models/TaleModel";
-import { FormControl, MenuItem, TextField, Typography } from "@mui/material";
-import { LoadingButton } from "@mui/lab";
+import { FormControl, MenuItem, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import { createTaleValidationSchema } from "./createTaleValidationSchema";
 import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 import { Status } from "../../../utils/stateStatus";
 import taleActions from "../talesActions";
+import StyledTextField from "../../../components/StyledTextField";
+import StyledLoadingButton from "../../../components/StyledLoadingButton";
+import FormBox from "../../../components/FormBox";
+import { reset } from "./createTaleSlice";
 
 const CreateTaleForm = () => {
   const dispatch = useAppDispatch();
 
-  const { data, status } = useAppSelector((state) => state.createTale);
+  const { status, error } = useAppSelector((state) => state.createTale);
   const { userProfile } = useAppSelector((state) => state.auth.data);
 
   const formik = useFormik({
@@ -28,66 +31,91 @@ const CreateTaleForm = () => {
   });
 
   useEffect(() => {
-    if (status === Status.Success) {
+    return () => {
       formik.resetForm();
-    }
-  }, [status]);
+      dispatch(reset());
+    };
+  }, []);
 
   return (
-    <>
-      <Typography sx={{ typography: { sm: "h5", md: "h3" } }} color="primary">
-        Wygeneruj bajkę
+    <FormBox status={status} error={error}>
+      <Typography variant="h2" alignSelf="center">
+        Stwórz bajkę
       </Typography>
       <FormControl
         component={"form"}
         sx={{ py: 4 }}
         onSubmit={(val) => formik.handleSubmit(val)}
       >
-        <TextField
+        <StyledTextField
           id="child_name"
           name="child_name"
           label="Imię *"
           type="text"
+          size="small"
           sx={{ mb: 2 }}
           value={formik.values.child_name}
           onChange={formik.handleChange}
           error={formik.touched.child_name && Boolean(formik.errors.child_name)}
         />
-        <TextField
+        <StyledTextField
           id="age"
           name="age"
           label="Wiek *"
           type="number"
+          size="small"
           sx={{ mb: 2 }}
           value={formik.values.age || ""}
           onChange={formik.handleChange}
           error={formik.touched.age && Boolean(formik.errors.age)}
         />
-        <TextField
+        <StyledTextField
           select
           id="topic"
           name="topic"
+          size="small"
           label="Temat"
           value={formik.values.topic}
           onChange={formik.handleChange}
           error={formik.touched.topic && Boolean(formik.errors.topic)}
           sx={{ mb: 2 }}
+          inputProps={{
+            MenuProps: {
+                MenuListProps: {
+                  sx: {
+                      backgroundColor: '#000',
+                      border: '1px solid white',
+                      borderRadius: 2,
+                  }
+              },
+              PaperProps: {
+                sx: {
+                  "& .MuiMenuItem-root:hover": {
+                    backgroundColor: "success.main"
+                  },
+                  "& .MuiMenuItem-root.Mui-selected:hover": {
+                    backgroundColor: "success.main"
+                  }
+                }
+              }
+            
+          }
+          }}
         >
           <MenuItem value="dinosaurs">Dinozaury</MenuItem>
           <MenuItem value="space">Kosmos</MenuItem>
           <MenuItem value="pokemon">Pokemon</MenuItem>
           <MenuItem value="cats">Koty</MenuItem>
-        </TextField>
-        <LoadingButton
+        </StyledTextField>
+        <StyledLoadingButton
           type="submit"
           variant="contained"
           loading={status === Status.Loading}
         >
           Stwórz bajkę
-        </LoadingButton>
+        </StyledLoadingButton>
       </FormControl>
-      {status === Status.Success && data!.content}
-    </>
+    </FormBox>
   );
 };
 

@@ -1,31 +1,30 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "../../../hooks/reduxHooks";
 import taleActions from "../talesActions";
-import { Box, Stack, Typography } from "@mui/material";
-import Sidebar from "../../../components/Sidebar";
+import { Grid, Typography } from "@mui/material";
 import TalesContainer from "../../../components/TalesContainer";
+import BackgroundImageBox from "../../../components/BackgroundImageBox";
+import BackgroundOpacityBox from "../../../components/BackgroundOpacityBox";
+import MainContainer from "../../../components/MainContainer";
 
 const TalesFeed = () => {
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(taleActions.getTalesByUser());
   }, []);
+
   return (
-    <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-      <Box
-        sx={{
-          height: { sx: "auto", md: "90vh" },
-          borderRight: "1px solid #3d3d3d",
-          px: { sx: 0, md: 2 },
-        }}
-      >
-        <Sidebar />
-      </Box>
-      <Box p={2} sx={{ overflowY: "auto", height: "90vh", flex: 2 }}>
-        <Typography variant="h4">Moje bajki</Typography>
+    <Grid container position="relative">
+      <BackgroundImageBox />
+      <BackgroundOpacityBox />
+      <MainContainer>
+        <Typography mt={2} mb={3} color="secondary.main" variant="h2">
+          Moje bajki
+        </Typography>
         <TalesContainer />
-      </Box>
-    </Stack>
+      </MainContainer>
+    </Grid>
   );
 };
 
