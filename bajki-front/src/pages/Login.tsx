@@ -83,10 +83,10 @@ const Login = () => {
             Zaloguj
           </StyledLoadingButton>
         </FormControl>
+        <RouterTextButton to="" text="Zapomniałem hasła" />
+        <Box my={0.5} />
+        <RouterTextButton to="register" text="Nie masz konta? Załóż konto" />
       </FormBox>
-      <RouterTextButton to="" text="Zapomniałem hasła" />
-      <Box my={0.5} />
-      <RouterTextButton to="register" text="Nie masz konta? Załóż konto" />
     </>
   );
 };

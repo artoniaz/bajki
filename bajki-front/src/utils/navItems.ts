@@ -9,8 +9,4 @@ export const navItems: NavItemsModel = {
     path: "/about",
     content: "o nas",
   },
-  login: {
-    path: "/login",
-    content: "zaloguj",
-  },
 };

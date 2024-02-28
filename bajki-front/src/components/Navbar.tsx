@@ -4,6 +4,7 @@ import NavLinkButton from "./NavLinkButton";
 import { navItems } from "../utils/navItems";
 import LogoBox from "./LogoBox";
 import { useLocation } from "react-router-dom";
+import AuthBox from "./AuthBox";
 
 const Navbar = () => {
   const { pathname } = useLocation();
@@ -20,22 +21,24 @@ const Navbar = () => {
         >
           <MenuIcon />
         </IconButton>
-        <LogoBox logoType="noTitle" width={'100px'} height={'67px'} />
+        <LogoBox logoType="noTitle" width={"100px"} height={"67px"} />
         <Box
           sx={{
             display: { xs: "none", sm: "block" },
           }}
         >
-          {Object.values(navItems).map((navItem) => (
-            <NavLinkButton
-              key={navItem.path}
-              to={navItem.path}
-              text={navItem.content}
-              isActive={pathname === navItem.path}
-            />
-          ))}
+          {[
+            ...Object.values(navItems).map((navItem) => (
+              <NavLinkButton
+                key={navItem.path}
+                to={navItem.path}
+                text={navItem.content}
+                isActive={pathname === navItem.path}
+              />
+            )),
+            <AuthBox />,
+          ]}
         </Box>
-        {/* <AuthBox /> */}
       </Toolbar>
     </AppBar>
   );

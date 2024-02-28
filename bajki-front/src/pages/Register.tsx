@@ -97,8 +97,8 @@ const Register = () => {
             Stwórz konto
           </StyledLoadingButton>
         </FormControl>
+        <RouterTextButton to="login" text="Masz już konto? Zaloguj się" />
       </FormBox>
-      <RouterTextButton to="login" text="Masz już konto? Zaloguj się" />
     </>
   );
 };
