@@ -25,6 +25,7 @@ const Register = () => {
       name: "",
       email: "",
       password: "",
+      passwordConfirm: "",
     },
     validationSchema: registerValidationSchema,
     onSubmit: (values: AuthCredentialsModel) => {
@@ -39,7 +40,7 @@ const Register = () => {
   });
 
   if (userInfo) {
-    return <Navigate to={navItems.home.path} replace />;
+    return <Navigate to={navItems.createTale.path} replace />;
   }
 
   return (
@@ -88,6 +89,23 @@ const Register = () => {
             onChange={formik.handleChange}
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
+          />
+          <StyledTextField
+            id="passwordConfirm"
+            name="passwordConfirm"
+            label="Confirm password *"
+            type="password"
+            size="small"
+            sx={{ mb: 2 }}
+            value={formik.values.passwordConfirm}
+            onChange={formik.handleChange}
+            error={
+              formik.touched.passwordConfirm &&
+              Boolean(formik.errors.passwordConfirm)
+            }
+            helperText={
+              formik.touched.passwordConfirm && formik.errors.passwordConfirm
+            }
           />
           <StyledLoadingButton
             type="submit"
