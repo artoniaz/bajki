@@ -5,10 +5,10 @@ const BackgroundImageBox = () => {
     <Box
       component="img"
       sx={{
+        position: 'fixed',
         width: "100%",
         maxWidth: "3400px",
         height: "100vh",
-        // objectFit: "cover",
         margin: "auto",
       }}
       alt="Children reading, having fun."

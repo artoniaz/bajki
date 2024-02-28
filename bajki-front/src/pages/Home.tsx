@@ -16,7 +16,7 @@ const Home = () => {
     <Grid container position="relative">
       <BackgroundImageBox />
       {createTaleStatus === Status.Success && <ShortTaleContainer />}
-      <Grid container position="absolute" p={10} height="100vh">
+      <Grid container zIndex={2} p={10} height="100vh">
         <Grid
           item
           md={5}

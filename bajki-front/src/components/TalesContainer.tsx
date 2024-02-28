@@ -6,11 +6,9 @@ import TaleCard from "./TaleCard";
 const TalesContainer = () => {
   const { data: tales } = useAppSelector((state) => state.getTales);
   return (
-    <Stack direction="row" flexWrap="wrap" justifyContent="start" gap={2}>
+    <Stack direction="row" flexWrap="wrap" justifyContent='space-evenly' alignItems='stretch' gap={2}>
       {tales.map((tale: TaleModel) => (
-        <Box key={tale._id}>
-          <TaleCard tale={tale} />
-        </Box>
+          <TaleCard key={tale._id} tale={tale} />
       ))}
     </Stack>
   );

@@ -23,7 +23,7 @@ const AuthBox = () => {
         text="Moje bajki"
         isActive={pathname === "/myTales"}
       />
-      <Button sx={{ color: "white" }} onClick={handleLogout}>
+      <Button sx={{ color: "white", ml: 8 }} onClick={handleLogout}>
         Wyloguj
       </Button>
     </>
