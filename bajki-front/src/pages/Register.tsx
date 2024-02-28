@@ -57,6 +57,7 @@ const Register = () => {
             id="name"
             name="name"
             label="Name *"
+            size="small"
             type="name"
             sx={{ my: 2 }}
             value={formik.values.name}
@@ -69,6 +70,7 @@ const Register = () => {
             name="email"
             label="Email *"
             type="email"
+            size="small"
             sx={{ mb: 2 }}
             value={formik.values.email}
             onChange={formik.handleChange}
@@ -80,6 +82,7 @@ const Register = () => {
             name="password"
             label="Password *"
             type="password"
+            size="small"
             sx={{ mb: 2 }}
             value={formik.values.password}
             onChange={formik.handleChange}

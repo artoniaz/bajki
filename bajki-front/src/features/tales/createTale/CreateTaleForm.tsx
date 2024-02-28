@@ -52,6 +52,7 @@ const CreateTaleForm = () => {
           name="child_name"
           label="Imię *"
           type="text"
+          size="small"
           sx={{ mb: 2 }}
           value={formik.values.child_name}
           onChange={formik.handleChange}
@@ -62,6 +63,7 @@ const CreateTaleForm = () => {
           name="age"
           label="Wiek *"
           type="number"
+          size="small"
           sx={{ mb: 2 }}
           value={formik.values.age || ""}
           onChange={formik.handleChange}
@@ -71,11 +73,34 @@ const CreateTaleForm = () => {
           select
           id="topic"
           name="topic"
+          size="small"
           label="Temat"
           value={formik.values.topic}
           onChange={formik.handleChange}
           error={formik.touched.topic && Boolean(formik.errors.topic)}
           sx={{ mb: 2 }}
+          inputProps={{
+            MenuProps: {
+                MenuListProps: {
+                  sx: {
+                      backgroundColor: '#000',
+                      border: '1px solid white',
+                      borderRadius: 2,
+                  }
+              },
+              PaperProps: {
+                sx: {
+                  "& .MuiMenuItem-root:hover": {
+                    backgroundColor: "success.main"
+                  },
+                  "& .MuiMenuItem-root.Mui-selected:hover": {
+                    backgroundColor: "success.main"
+                  }
+                }
+              }
+            
+          }
+          }}
         >
           <MenuItem value="dinosaurs">Dinozaury</MenuItem>
           <MenuItem value="space">Kosmos</MenuItem>

@@ -57,6 +57,7 @@ const Login = () => {
             name={EMAIL}
             label="Email *"
             type={EMAIL}
+            size="small"
             value={formik.values.email}
             onChange={formik.handleChange}
             error={formik.touched.email && Boolean(formik.errors.email)}
@@ -67,6 +68,7 @@ const Login = () => {
             name={PASSWORD}
             label="Password *"
             type={PASSWORD}
+            size="small"
             sx={{ my: 2 }}
             value={formik.values.password}
             onChange={formik.handleChange}
