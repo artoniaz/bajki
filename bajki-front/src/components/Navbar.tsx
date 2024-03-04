@@ -21,7 +21,7 @@ const Navbar = () => {
         >
           <MenuIcon />
         </IconButton>
-        <LogoBox logoType="noTitle" width={"100px"} height={"67px"} />
+        <LogoBox logoType="noTitle" />
         <Box
           sx={{
             display: { xs: "none", sm: "block" },

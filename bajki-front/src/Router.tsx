@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
 import Home from "./pages/Home";
-import AboutPage from "./pages/AboutPage";
+import About from "./pages/About";
 import NotFound from "./pages/NotFoudPage";
 import Login from "./pages/Login";
 import TalesFeed from "./features/tales/getTales/TalesFeed";
@@ -20,7 +20,7 @@ export const Router = createBrowserRouter(
         <Route index element={<CreateTaleForm />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="about" element={<AboutPage />} />
+        <Route path="about" element={<About />} />
       </Route>
       <Route path="myTales" element={<TalesFeed />} />
       <Route path="myProfile" element={<MyProfile />} />
