@@ -1,5 +1,5 @@
 const About = () => {
-    return ( <div>about</div> );
-}
- 
+  return <div style={{ zIndex: 2 }}>about</div>;
+};
+
 export default About;

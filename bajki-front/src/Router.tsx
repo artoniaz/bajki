@@ -24,6 +24,7 @@ export const Router = createBrowserRouter(
       </Route>
       <Route path="myTales" element={<TalesFeed />} />
       <Route path="myProfile" element={<MyProfile />} />
+      <Route path="aboutUs" element={<About />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )

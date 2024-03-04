@@ -7,6 +7,7 @@ export const navItems: NavItemsModel = {
   },
   about: {
     path: "/about",
+    pathMobile: '/aboutUs',
     content: "o nas",
   },
 };

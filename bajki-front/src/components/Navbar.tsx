@@ -1,43 +1,36 @@
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import NavLinkButton from "./NavLinkButton";
-import { navItems } from "../utils/navItems";
 import LogoBox from "./LogoBox";
 import { useLocation } from "react-router-dom";
-import AuthBox from "./AuthBox";
+import { useState } from "react";
+import CustomDrawer from "./CustomDrawer";
+import NavLinkButtonList from "./NavLinkButtonList";
 
 const Navbar = () => {
-  const { pathname } = useLocation();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const handleSetIsDrawerOpen = (arg: boolean) => setIsDrawerOpen(arg);
 
   return (
-    <AppBar sx={{ backgroundColor: "rgba(0,0,0,0.4)", px: 8 }}>
+    <AppBar sx={{ backgroundColor: "rgba(0,0,0,0.4)", px: { xs: 0, md: 8 } }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <LogoBox logoType="noTitle" size="small" />
+        <CustomDrawer open={isDrawerOpen} onClose={handleSetIsDrawerOpen} />
         <IconButton
           color="inherit"
           aria-label="open drawer"
           edge="start"
-          // onClick={handleDrawerToggle}
-          sx={{ mr: 2, display: { sm: "none" } }}
+          onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+          sx={{ display: { md: "none" }, p: 0 }}
         >
           <MenuIcon />
         </IconButton>
-        <LogoBox logoType="noTitle" />
         <Box
           sx={{
             display: { xs: "none", sm: "block" },
           }}
         >
-          {[
-            ...Object.values(navItems).map((navItem) => (
-              <NavLinkButton
-                key={navItem.path}
-                to={navItem.path}
-                text={navItem.content}
-                isActive={pathname === navItem.path}
-              />
-            )),
-            <AuthBox key='authBox' />,
-          ]}
+          <NavLinkButtonList />
         </Box>
       </Toolbar>
     </AppBar>

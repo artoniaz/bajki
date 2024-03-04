@@ -4,5 +4,6 @@ export interface NavItemsModel {
 
 interface NavItemModel {
   path: string;
+  pathMobile?: string;
   content: string;
 }
