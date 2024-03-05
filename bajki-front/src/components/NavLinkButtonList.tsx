@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import {isMobile} from 'react-device-detect';
+import { isMobile } from "react-device-detect";
 import { navItems } from "../utils/navItems";
 import NavLinkButton from "./NavLinkButton";
 import AuthBox from "./AuthBox";
@@ -17,9 +17,9 @@ const NavLinkButtonList = ({
         ...Object.values(navItems).map((navItem) => (
           <NavLinkButton
             key={navItem.path}
-            to={navItem.pathMobile && isMobile ? navItem.pathMobile : navItem.path}
+            to={navItem.path}
             text={navItem.content}
-            isActive={pathname === navItem.path || pathname === navItem.pathMobile}
+            isActive={pathname === navItem.path}
             onDrawerClose={onDrawerClose}
           />
         )),
