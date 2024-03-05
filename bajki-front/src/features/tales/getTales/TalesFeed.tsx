@@ -13,7 +13,11 @@ const TalesFeed = () => {
 
   return (
     <>
-      <Typography mt={2} mb={3} color="secondary.main" variant="h2">
+      <Typography mb={3} color="secondary.main" variant="h2"
+      sx={{
+        mt: {xs: 8, md: 2}
+      }}
+      >
         Moje bajki
       </Typography>
       <TalesContainer />

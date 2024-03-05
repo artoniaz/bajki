@@ -5,17 +5,24 @@ import constants from "../utils/constants";
 const TaleCard = ({ tale }: { tale: TaleModel }) => {
   return (
     <Card
-      sx={{ width: { xs: "100%", sm: "358px", md: "326px" }, borderRadius: 4 }}
+      sx={{
+        width: { xs: "100%", sm: "358px", md: "326px" },
+        height: { xs: "120px", md: "auto" },
+        borderRadius: 4,
+        display: { xs: "flex", md: "initial" },
+      }}
     >
       <Box
         component="img"
-        width="100%"
-        height="210px"
         src={constants.backupTaleImg}
         alt="Tale image"
-        sx={{ objectFit: "cover" }}
+        sx={{
+          objectFit: "cover",
+          height: { xs: "auto", md: "210px" },
+          width: { xs: "40%", md: "100%" },
+        }}
       />
-      <CardContent sx={{ px: 2, py: 0 }}>
+      <CardContent sx={{ px: 2, py: {xs: 1, md: 0}, width: { xs: '60%', md: 'auto' } }}>
         <Typography variant="h6" color="secondary.main">
           {tale.topic}
         </Typography>

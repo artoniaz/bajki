@@ -56,4 +56,16 @@ export const theme = createTheme({
       },
     },
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontSize: "16px",
+          "@media (max-width:900px)": {
+            fontSize: "12px",
+          },
+        },
+      },
+    },
+  },
 });
