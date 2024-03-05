@@ -22,7 +22,17 @@ const TaleCard = ({ tale }: { tale: TaleModel }) => {
           width: { xs: "40%", md: "100%" },
         }}
       />
-      <CardContent sx={{ px: 2, py: {xs: 1, md: 0}, width: { xs: '60%', md: 'auto' } }}>
+      <CardContent
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "flex-start",
+          px: 2,
+          py: { xs: 1, md: 0 },
+          width: { xs: "60%", md: "auto" },
+        }}
+      >
         <Typography variant="h6" color="secondary.main">
           {tale.topic}
         </Typography>
