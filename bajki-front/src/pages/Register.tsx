@@ -51,7 +51,7 @@ const Register = () => {
           onSubmit={(val) => formik.handleSubmit(val)}
           sx={{ py: 4 }}
         >
-          <Typography variant="h2" alignSelf="center">
+          <Typography variant="h2" textAlign='center'>
             Załóż konto
           </Typography>
           <StyledTextField
