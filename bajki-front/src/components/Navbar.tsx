@@ -1,7 +1,6 @@
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoBox from "./LogoBox";
-import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import CustomDrawer from "./CustomDrawer";
 import NavLinkButtonList from "./NavLinkButtonList";
@@ -12,7 +11,7 @@ const Navbar = () => {
   const handleSetIsDrawerOpen = (arg: boolean) => setIsDrawerOpen(arg);
 
   return (
-    <AppBar sx={{ backgroundColor: "rgba(0,0,0,0.4)", px: { xs: 0, md: 8 } }}>
+    <AppBar sx={{ backgroundColor: "rgba(0,0,0,0.4)", px: { xs: 0, md: 6 } }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <LogoBox logoType="noTitle" size="small" />
         <CustomDrawer open={isDrawerOpen} onClose={handleSetIsDrawerOpen} />
