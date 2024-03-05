@@ -22,55 +22,46 @@ const Home = () => {
     <>
       {createTaleStatus === Status.Success && <ShortTaleContainer />}
       <Grid
-        container
-        zIndex={2}
+        item
+        xs={12}
+        md={5}
+        display="flex"
+        flexDirection="column"
         sx={{
-          p: { xs: 2, md: 10 },
+          justifyContent: { xs: "center", md: "flex-end" },
+          height: { xs: "100vh", md: "auto" },
         }}
       >
-        <Grid
-          item
-          xs={12}
-          md={5}
-          display="flex"
-          flexDirection="column"
+        <LogoBox logoType="title" size="big" />
+        <HomePageInfoBox />
+        <Button
           sx={{
-            justifyContent: { xs: "center", md: "flex-end" },
-            height: { xs: "100vh", md: "auto" },
+            display: { sx: "block", md: "none" },
+            mt: 4,
           }}
+          variant="contained"
+          onClick={handleCreateTaleBtn}
         >
-          <LogoBox logoType="title" size="big" />
-          <HomePageInfoBox />
-          <Button
-            sx={{
-              display: { sx: "block", md: "none" },
-              mt: 4,
-            }}
-            variant="contained"
-            onClick={handleCreateTaleBtn}
-          >
-            Stwórz bajkę
-          </Button>
-        </Grid>
-        <Grid item sx={{ display: { xs: "none", md: "block" } }} md={3} />
-        <Grid
-          item
-          sx={{ display: { xs: "none", md: "flex" } }}
-          md={4}
-          alignItems="flex-end "
-          justifyContent="flex-end"
-        >
-          <Outlet />
-        </Grid>
-        <Grid
-          item
-          sx={{ display: { xs: "block", md: "none" } }}
-          xs={12}
-          ref={ref}
-          height="100vh"
-        >
-          <Outlet />
-        </Grid>
+          Stwórz bajkę
+        </Button>
+      </Grid>
+      <Grid item sx={{ display: { xs: "none", md: "block" } }} md={3} />
+      <Grid
+        item
+        sx={{ display: { xs: "none", md: "flex" } }}
+        md={4}
+        alignItems="flex-end"
+      >
+        <Outlet />
+      </Grid>
+      <Grid
+        item
+        sx={{ display: { xs: "block", md: "none" } }}
+        xs={12}
+        ref={ref}
+        height="100vh"
+      >
+        <Outlet />
       </Grid>
     </>
   );

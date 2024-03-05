@@ -3,6 +3,7 @@ import NavLinkButton from "./NavLinkButton";
 import { useLocation, useNavigate } from "react-router-dom";
 import { authActions } from "../features/auth/authActions";
 import { navItems } from "../utils/navItems";
+import { Button } from "@mui/material";
 
 interface AuthBoxProps {
   onDrawerClose?: (arg: boolean) => void;
@@ -32,20 +33,21 @@ const AuthBox = ({ onDrawerClose }: AuthBoxProps) => {
         text="Mój profil"
         isActive={pathname === "/myProfile"}
         onDrawerClose={onDrawerClose}
-      />
+        />
       {/* TODO: move to my profile */}
-      {/* <Button
+      <Button
         sx={{ color: "white", ml: 8 }}
         onClick={handleLogout}
-      >
+        >
         Wyloguj
-      </Button> */}
+      </Button>
     </>
   ) : (
     <NavLinkButton
-      to="/login"
-      text="Zaloguj"
-      isActive={pathname === "/login"}
+    to="/login"
+    text="Zaloguj"
+    isActive={pathname === "/login"}
+    onDrawerClose={onDrawerClose}
     />
   );
 };

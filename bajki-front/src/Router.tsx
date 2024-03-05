@@ -16,12 +16,12 @@ import MyProfile from "./pages/MyProfile";
 
 const mobileRoutes = createRoutesFromElements(
   <Route path="/" element={<RootLayout />}>
-    <Route path="about" element={<About />} />
     <Route path="/" element={<Home />}>
       <Route index element={<CreateTaleForm />} />
-      <Route path="login" element={<Login />} />
-      <Route path="register" element={<Register />} />
     </Route>
+    <Route path="about" element={<About />} />
+    <Route path="login" element={<Login />} />
+    <Route path="register" element={<Register />} />
     <Route path="myTales" element={<TalesFeed />} />
     <Route path="myProfile" element={<MyProfile />} />
     <Route path="*" element={<NotFound />} />
