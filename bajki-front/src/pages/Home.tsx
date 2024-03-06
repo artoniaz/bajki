@@ -5,22 +5,39 @@ import { Outlet } from "react-router-dom";
 import ShortTaleContainer from "../components/ShortTaleContainer";
 import { useAppSelector } from "../hooks/reduxHooks";
 import { Status } from "../utils/stateStatus";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { isMobile } from "react-device-detect";
+import ShortTaleContainerMobile from "../components/ShortTaleContainerMobile";
 
 const Home = () => {
-  const { status: createTaleStatus } = useAppSelector(
+  const { status: createTaleStatus, data: tale } = useAppSelector(
     (state) => state.createTale
   );
 
-  const ref = useRef<null | HTMLDivElement>(null);
+  const createTaleFormRef = useRef<null | HTMLDivElement>(null);
+  const mobileTaleContainerRef = useRef<null | HTMLDivElement>(null);
 
   const handleCreateTaleBtn = () => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
+    const element = createTaleFormRef.current;
+    if (element) {
+      const offset = element.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: offset, behavior: 'smooth' });
+    }
   };
+
+  useEffect(() => {
+    if (createTaleStatus === Status.Success) {
+      setTimeout(()=> {
+        mobileTaleContainerRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 10)
+    }
+  }, [createTaleStatus]);
 
   return (
     <>
-      {createTaleStatus === Status.Success && <ShortTaleContainer />}
+      {createTaleStatus === Status.Success && !isMobile && (
+        <ShortTaleContainer />
+      )}
       <Grid
         item
         xs={12}
@@ -58,10 +75,13 @@ const Home = () => {
         item
         sx={{ display: { xs: "block", md: "none" } }}
         xs={12}
-        ref={ref}
+        ref={createTaleFormRef}
         height="100vh"
       >
         <Outlet />
+        {createTaleStatus === Status.Success && isMobile && (
+          <ShortTaleContainerMobile ref={mobileTaleContainerRef} tale={tale!} />
+        )}
       </Grid>
     </>
   );
