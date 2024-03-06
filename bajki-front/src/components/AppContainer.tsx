@@ -9,7 +9,7 @@ const AppContainer = ({ children }: { children: JSX.Element }) => {
     <Grid container position="relative" component="main">
       <BackgroundImageBox />
       {(pathname === "/myTales" || pathname === "/myProfile") && (
-        <BackgroundOpacityBox />
+          <BackgroundOpacityBox />
       )}
       <Grid
         container
@@ -18,7 +18,8 @@ const AppContainer = ({ children }: { children: JSX.Element }) => {
           display: { xs: "flex", md: "auto" },
           alignItems: { xs: "center", md: "normal" },
           p: { xs: 2, md: 10 },
-          overflowX: { xs: "hidden", md: "visible" }
+          overflowX: { xs: "hidden", md: "visible" },
+          minHeight: "100vh",
         }}
       >
         {children}
