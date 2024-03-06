@@ -1,45 +1,89 @@
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import LogoBox from "../components/LogoBox";
 import HomePageInfoBox from "../components/HomePageInfoBox";
-import BackgroundImageBox from "../components/BackgroundImageBox";
 import { Outlet } from "react-router-dom";
 import ShortTaleContainer from "../components/ShortTaleContainer";
 import { useAppSelector } from "../hooks/reduxHooks";
 import { Status } from "../utils/stateStatus";
+import { useEffect, useRef } from "react";
+import { isMobile } from "react-device-detect";
+import ShortTaleContainerMobile from "../components/ShortTaleContainerMobile";
 
 const Home = () => {
-  const { status: createTaleStatus } = useAppSelector(
+  const { status: createTaleStatus, data: tale } = useAppSelector(
     (state) => state.createTale
   );
 
+  const createTaleFormRef = useRef<null | HTMLDivElement>(null);
+  const mobileTaleContainerRef = useRef<null | HTMLDivElement>(null);
+
+  const handleCreateTaleBtn = () => {
+    const element = createTaleFormRef.current;
+    if (element) {
+      const offset = element.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: offset, behavior: 'smooth' });
+    }
+  };
+
+  useEffect(() => {
+    if (createTaleStatus === Status.Success) {
+      setTimeout(()=> {
+        mobileTaleContainerRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 10)
+    }
+  }, [createTaleStatus]);
+
   return (
-    <Grid container position="relative">
-      <BackgroundImageBox />
-      {createTaleStatus === Status.Success && <ShortTaleContainer />}
-      <Grid container zIndex={2} p={10} height="100vh">
-        <Grid
-          item
-          md={5}
-          display="flex"
-          flexDirection="column"
-          justifyContent="flex-end"
-          height="100%"
+    <>
+      {createTaleStatus === Status.Success && !isMobile && (
+        <ShortTaleContainer />
+      )}
+      <Grid
+        item
+        xs={12}
+        md={5}
+        display="flex"
+        flexDirection="column"
+        sx={{
+          justifyContent: { xs: "center", md: "flex-end" },
+          height: { xs: "100vh", md: "auto" },
+        }}
+      >
+        <LogoBox logoType="title" size="big" />
+        <HomePageInfoBox />
+        <Button
+          sx={{
+            display: { sx: "block", md: "none" },
+            mt: 4,
+          }}
+          variant="contained"
+          onClick={handleCreateTaleBtn}
         >
-          <LogoBox logoType="title" width={'100%'} height={'300px'} />
-          <HomePageInfoBox />
-        </Grid>
-        <Grid item md={3} />
-        <Grid
-          item
-          md={4}
-          display="flex"
-          alignItems="flex-end"
-          justifyContent="flex-end"
-        >
-          <Outlet />
-        </Grid>
+          Stwórz bajkę
+        </Button>
       </Grid>
-    </Grid>
+      <Grid item sx={{ display: { xs: "none", md: "block" } }} md={3} />
+      <Grid
+        item
+        sx={{ display: { xs: "none", md: "flex" } }}
+        md={4}
+        alignItems="flex-end"
+      >
+        <Outlet />
+      </Grid>
+      <Grid
+        item
+        sx={{ display: { xs: "block", md: "none" } }}
+        xs={12}
+        ref={createTaleFormRef}
+        height="100vh"
+      >
+        <Outlet />
+        {createTaleStatus === Status.Success && isMobile && (
+          <ShortTaleContainerMobile ref={mobileTaleContainerRef} tale={tale!} />
+        )}
+      </Grid>
+    </>
   );
 };
 

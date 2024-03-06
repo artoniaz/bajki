@@ -10,6 +10,7 @@ const BackgroundImageBox = () => {
         maxWidth: "3400px",
         height: "100vh",
         margin: "auto",
+        objectFit: 'cover',
       }}
       alt="Children reading, having fun."
       src={require("../images/coverImg.png")}

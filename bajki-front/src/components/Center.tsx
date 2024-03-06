@@ -1,15 +1,12 @@
 import { Box } from "@mui/material";
-import { ReactNode } from "react";
 
 const Center = ({
   children,
-  height,
 }: {
-  children: ReactNode;
-  height?: string;
+  children: JSX.Element;
 }) => {
   return (
-    <Box position="relative" width="100%" height={height ?? "100vh"}>
+    <Box position="relative" width="100%">
       <Box
         position="absolute"
         top="50%"

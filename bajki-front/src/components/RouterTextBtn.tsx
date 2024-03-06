@@ -10,7 +10,7 @@ const RouterTextButton = ({ to, text }: RouterTextButtonProps) => {
   return (
     <RouterLink to={`/${to}`}>
       <Typography
-        sx={{ cursor: "pointer", textDecoration: 'underline' }}
+        sx={{ cursor: "pointer", textDecoration: "underline" }}
         variant="body2"
       >
         {text}

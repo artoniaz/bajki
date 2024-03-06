@@ -1,20 +1,15 @@
-import { Button } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import { useAppSelector } from "../hooks/reduxHooks";
 import NavLinkButton from "./NavLinkButton";
-import { useLocation, useNavigate } from "react-router-dom";
-import { authActions } from "../features/auth/authActions";
-import { navItems } from "../utils/navItems";
+import { useLocation } from "react-router-dom";
 
-const AuthBox = () => {
+interface AuthBoxProps {
+  onDrawerClose?: (arg: boolean) => void;
+}
+
+const AuthBox = ({ onDrawerClose }: AuthBoxProps) => {
   const { userProfile } = useAppSelector((state) => state.auth.data);
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
 
-  const handleLogout = async () => {
-    await dispatch(authActions.logout());
-    navigate(navItems.createTale.path);
-  };
+  const { pathname } = useLocation();
 
   return userProfile ? (
     <>
@@ -22,16 +17,21 @@ const AuthBox = () => {
         to="/myTales"
         text="Moje bajki"
         isActive={pathname === "/myTales"}
+        onDrawerClose={onDrawerClose}
       />
-      <Button sx={{ color: "white", ml: 8 }} onClick={handleLogout}>
-        Wyloguj
-      </Button>
+      <NavLinkButton
+        to="/myProfile"
+        text="Mój profil"
+        isActive={pathname === "/myProfile"}
+        onDrawerClose={onDrawerClose}
+      />
     </>
   ) : (
     <NavLinkButton
       to="/login"
       text="Zaloguj"
       isActive={pathname === "/login"}
+      onDrawerClose={onDrawerClose}
     />
   );
 };

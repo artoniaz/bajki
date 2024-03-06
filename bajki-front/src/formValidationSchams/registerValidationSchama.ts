@@ -8,4 +8,7 @@ export const registerValidationSchema = yup.object().shape({
     .required("Imię jest wymagane"),
   email: yup.string().email().required("Email jest wymagany"),
   password: yup.string().required("Hasło jest wymagane"),
+  passwordConfirm: yup
+    .string()
+    .oneOf([yup.ref("password")], "Hasła muszą się zgadzać"),
 });

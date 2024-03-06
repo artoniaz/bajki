@@ -18,27 +18,54 @@ export const theme = createTheme({
       fontSize: "48px",
       color: "#FFFFFF",
       fontWeight: 700,
+      "@media (max-width:900px)": {
+        fontSize: "22px",
+      },
     },
     h2: {
       fontFamily: ["Galada", "sans-serif"].join(","),
       color: "#FFFFFF",
       fontSize: "62px",
+      "@media (max-width:900px)": {
+        fontSize: "28px",
+      },
     },
     h6: {
       fontFamily: ["Lato", "sans-serif"].join(","),
       fontSize: "24px",
       color: "#FFFFFF",
       fontWeight: 500,
+      "@media (max-width:900px)": {
+        fontSize: "14px",
+      },
     },
     body1: {
       fontFamily: ["Lato", "sans-serif"].join(","),
       color: "#FFFFFF",
       fontSize: "24px",
+      "@media (max-width:900px)": {
+        fontSize: "14px",
+      },
     },
     body2: {
       fontFamily: ["Lato", "sans-serif"].join(","),
       color: "#FFFFFF",
       fontSize: "18px",
+      "@media (max-width:900px)": {
+        fontSize: "8px",
+      },
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontSize: "16px",
+          "@media (max-width:900px)": {
+            fontSize: "12px",
+          },
+        },
+      },
     },
   },
 });

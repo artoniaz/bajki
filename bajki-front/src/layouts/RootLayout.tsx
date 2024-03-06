@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { Box } from "@mui/material";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { authActions } from "../features/auth/authActions";
 import { setCredentials } from "../features/auth/authSlice";
 import constants from "../utils/constants";
+import AppContainer from "../components/AppContainer";
 
 const RootLayout = () => {
   const dispatch = useAppDispatch();
@@ -16,23 +16,22 @@ const RootLayout = () => {
       const user = localStorage.getItem(constants.USER_PROFILE);
       if (user) {
         const token = localStorage.getItem(constants.USER_TOKEN);
-        dispatch(setCredentials({user, token}));
+        dispatch(setCredentials({ user, token }));
       } else {
         if (userToken) {
           dispatch(authActions.getUserProfile(userToken!));
         }
-
       }
-    } 
+    }
   }, [userToken]);
-  
+
   return (
-    <div>
+    <>
       <Navbar />
-      <Box component="main">
+      <AppContainer>
         <Outlet />
-      </Box>
-    </div>
+      </AppContainer>
+    </>
   );
 };
 
