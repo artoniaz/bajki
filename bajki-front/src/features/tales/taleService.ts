@@ -1,6 +1,6 @@
 import TaleModel from "../../models/TaleModel";
 
-const API_URL = "/api/tales";
+const API_URL = "https://grim.onrender.com/api/tales";
 
 const taleService = {
   getTalesByUser: async (userToken: string): Promise<TaleModel[]> => {
