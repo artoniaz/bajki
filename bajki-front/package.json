@@ -1,6 +1,7 @@
 {
   "name": "bajki-front",
   "version": "0.1.0",
+  "homepage": "https://twoja-bajka.pl",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.3",
