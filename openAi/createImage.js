@@ -1,7 +1,9 @@
 const { openai } = require("../common/openAI");
 
 const createPrompt = (taleContent) => `
-  Create image that depicts given tale context for children. Ilustrative style.
+  Create image that depicts given tale context for children. 
+  You can't write any letters. 
+  Ilustrative style.
   My prompt has full detail so no need to add more.
   
   ###

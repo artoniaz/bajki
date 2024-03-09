@@ -29,7 +29,6 @@ const createTale = async (req, res) => {
   try {
     const taleContent = await createTaleChatCompletion(req);
     req.body.content = taleContent;
-
     // don't save tale & don't create image if !id
     if (req.body.user_id !== "") {
       const image_url = await createImage(taleContent);

@@ -16,16 +16,16 @@ const CreateTaleForm = () => {
 
   const { status, error } = useAppSelector((state) => state.createTale);
   const { userProfile } = useAppSelector((state) => state.auth.data);
-
   const formik = useFormik({
     initialValues: {
-      user_id: userProfile?.id ?? "",
+      user_id: "",
       child_name: "",
       age: 0,
       topic: "",
     },
     validationSchema: createTaleValidationSchema,
     onSubmit: (values: TaleModel) => {
+      values.user_id = userProfile?.id ?? "";
       dispatch(taleActions.createTale(values));
     },
   });
@@ -81,25 +81,24 @@ const CreateTaleForm = () => {
           sx={{ mb: 2 }}
           inputProps={{
             MenuProps: {
-                MenuListProps: {
-                  sx: {
-                      backgroundColor: '#000',
-                      border: '1px solid white',
-                      borderRadius: 2,
-                  }
+              MenuListProps: {
+                sx: {
+                  backgroundColor: "#000",
+                  border: "1px solid white",
+                  borderRadius: 2,
+                },
               },
               PaperProps: {
                 sx: {
                   "& .MuiMenuItem-root:hover": {
-                    backgroundColor: "success.main"
+                    backgroundColor: "success.main",
                   },
                   "& .MuiMenuItem-root.Mui-selected:hover": {
-                    backgroundColor: "success.main"
-                  }
-                }
-              }
-            
-          }
+                    backgroundColor: "success.main",
+                  },
+                },
+              },
+            },
           }}
         >
           <MenuItem value="dinosaurs">Dinozaury</MenuItem>
