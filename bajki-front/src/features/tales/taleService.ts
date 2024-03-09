@@ -1,6 +1,7 @@
 import TaleModel from "../../models/TaleModel";
 
-const API_URL = "https://grim.onrender.com/api/tales";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+const API_URL = `${BASE_URL}/api/tales`;
 
 const taleService = {
   getTalesByUser: async (userToken: string): Promise<TaleModel[]> => {
@@ -9,7 +10,7 @@ const taleService = {
         headers: { Authorization: `Bearer ${userToken}` },
       });
       if (!response.ok) {
-        throw Error('Błąd pobierania bajek.');
+        throw Error("Błąd pobierania bajek.");
       }
       const json = await response.json();
       return json;
@@ -25,7 +26,7 @@ const taleService = {
         headers: { "Content-Type": "application/json" },
       });
       if (!response.ok) {
-        throw Error('Wystąpił błąd tworzenia bajki');
+        throw Error("Wystąpił błąd tworzenia bajki");
       }
       return response.json();
     } catch (e) {
