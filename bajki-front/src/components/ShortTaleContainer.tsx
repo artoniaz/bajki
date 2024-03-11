@@ -1,6 +1,7 @@
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import ShortTaleContainerBackgroundBox from "./ShortTaleContainerBackbroundBox";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import TaleButtonsContainer from "./TaleButtonsContainer";
 
 const ShortTaleContainer = () => {
   const { data: taleData } = useAppSelector((state) => state.createTale);
@@ -26,17 +27,7 @@ const ShortTaleContainer = () => {
         <Typography my={5} variant="body1" color={theme.palette.common.black}>
           {taleData!.content}
         </Typography>
-        <Box display="flex" justifyContent="space-between">
-          {/* TODO: onclick */}
-          <Button sx={{ flexGrow: "1" }} variant="outlined">
-            Stwórz nową
-          </Button>
-          <Box mx={4} />
-          {/* TODO: onclick */}
-          <Button sx={{ flexGrow: "1" }} variant="contained">
-            Kontynuuj bajkę
-          </Button>
-        </Box>
+        <TaleButtonsContainer />
       </Box>
     </Box>
   );
