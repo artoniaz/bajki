@@ -14,7 +14,7 @@ const TaleCard = ({ tale }: { tale: TaleModel }) => {
     >
       <Box
         component="img"
-        src={constants.backupTaleImg}
+        src={tale.image_url ?? constants.backupTaleImg}
         alt="Tale image"
         sx={{
           objectFit: "cover",

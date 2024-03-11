@@ -15,16 +15,16 @@ const ShortTaleContainer = () => {
         sx={{
           position: "absolute",
           zIndex: 3,
-          bottom: "80px",
+          top: { xs: "50vh", lg: "40vh" },
           right: "80px",
-          maxWidth: { md: "30%", lg: "50%" },
+          maxWidth: { md: "40%", lg: "45%" },
         }}
       >
         <Typography variant="h1" color={theme.palette.common.black}>
           {taleData!.topic}
         </Typography>
         <Typography my={5} variant="body1" color={theme.palette.common.black}>
-          {taleData!.content} 
+          {taleData!.content}
         </Typography>
         <Box display="flex" justifyContent="space-between">
           {/* TODO: onclick */}

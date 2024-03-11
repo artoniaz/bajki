@@ -8,7 +8,7 @@ const createTaleChatCompletion = async (req) => {
         content: `
             You are a fairy tale writter. 
             You will be given info about the child for whom youre writting. The topic of the tale will be provided.
-            Answer max 300 characters but keep in mind the tale will be extended. 
+            Answer max 1000 characters but keep in mind the tale will be extended. 
             Keep in mind the child is the main character. Never change the child name. Adjust tone to the child age. 
             Answer only in polish. 
     
