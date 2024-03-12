@@ -30,7 +30,7 @@ const mobileRoutes = createRoutesFromElements(
 
 const webRoutes = createRoutesFromElements(
   <Route path="/" element={<RootLayout />}>
-    <Route path="/" element={<Home />}>
+    <Route element={<Home />}>
       <Route index element={<CreateTaleForm />} />
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />

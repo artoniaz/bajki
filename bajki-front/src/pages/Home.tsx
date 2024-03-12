@@ -21,15 +21,15 @@ const Home = () => {
     const element = createTaleFormRef.current;
     if (element) {
       const offset = element.getBoundingClientRect().top + window.scrollY - 100;
-      window.scrollTo({ top: offset, behavior: 'smooth' });
+      window.scrollTo({ top: offset, behavior: "smooth" });
     }
   };
 
   useEffect(() => {
     if (createTaleStatus === Status.Success) {
-      setTimeout(()=> {
+      setTimeout(() => {
         mobileTaleContainerRef.current?.scrollIntoView({ behavior: "smooth" });
-      }, 10)
+      }, 10);
     }
   }, [createTaleStatus]);
 
@@ -71,18 +71,23 @@ const Home = () => {
       >
         <Outlet />
       </Grid>
-      <Grid
-        item
-        sx={{ display: { xs: "block", md: "none" } }}
-        xs={12}
-        ref={createTaleFormRef}
-        height="100vh"
-      >
-        <Outlet />
-        {createTaleStatus === Status.Success && isMobile && (
-          <ShortTaleContainerMobile ref={mobileTaleContainerRef} tale={tale!} />
-        )}
-      </Grid>
+      {isMobile && (
+        <Grid
+          item
+          sx={{ display: { xs: "block" } }}
+          xs={12}
+          ref={createTaleFormRef}
+          height="100vh"
+        >
+          <Outlet />
+          {createTaleStatus === Status.Success && (
+            <ShortTaleContainerMobile
+              ref={mobileTaleContainerRef}
+              tale={tale!}
+            />
+          )}
+        </Grid>
+      )}
     </>
   );
 };
