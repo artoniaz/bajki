@@ -9,6 +9,9 @@ export const theme = createTheme({
     secondary: {
       main: "#005934", //dark green
     },
+    error: {
+      main: "#D20000",
+    },
   },
   typography: {
     fontFamily: ["Lato", "sans-serif"].join(","),

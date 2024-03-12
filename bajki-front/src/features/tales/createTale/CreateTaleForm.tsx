@@ -44,7 +44,6 @@ const CreateTaleForm = () => {
       </Typography>
       <FormControl
         component={"form"}
-        sx={{ py: 4 }}
         onSubmit={(val) => formik.handleSubmit(val)}
       >
         <StyledTextField
