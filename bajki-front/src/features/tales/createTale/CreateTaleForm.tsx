@@ -27,12 +27,12 @@ const CreateTaleForm = () => {
     onSubmit: (values: TaleModel) => {
       values.user_id = userProfile?.id ?? "";
       dispatch(taleActions.createTale(values));
+      formik.resetForm();
     },
   });
 
   useEffect(() => {
     return () => {
-      formik.resetForm();
       dispatch(reset());
     };
   }, []);

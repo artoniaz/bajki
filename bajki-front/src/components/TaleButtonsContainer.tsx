@@ -1,7 +1,15 @@
 import { Box, Button } from "@mui/material";
 import { isMobile } from "react-device-detect";
+import { useAppDispatch } from "../hooks/reduxHooks";
+import { reset } from "../features/tales/createTale/createTaleSlice";
 
 const TaleButtonsContainer = () => {
+  const dispatch = useAppDispatch();
+
+  const handleCreateNewTale = () => {
+    dispatch(reset());
+  };
+
   return (
     <Box
       position={isMobile ? "static" : "sticky"}
@@ -15,8 +23,11 @@ const TaleButtonsContainer = () => {
       border={isMobile ? "none" : "1px solid #000"}
       borderBottom="none"
     >
-      {/* TODO: onclick */}
-      <Button sx={{ flexGrow: "1", mr: isMobile ? 2 : 8 }} variant="outlined">
+      <Button
+        onClick={handleCreateNewTale}
+        sx={{ flexGrow: "1", mr: isMobile ? 2 : 8 }}
+        variant="outlined"
+      >
         Stwórz nową
       </Button>
       {/* TODO: onclick */}

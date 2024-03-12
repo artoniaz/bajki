@@ -1,14 +1,12 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import ShortTaleContainerBackgroundBox from "./ShortTaleContainerBackbroundBox";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import { useAppSelector } from "../hooks/reduxHooks";
 import TaleButtonsContainer from "./TaleButtonsContainer";
 
 const ShortTaleContainer = () => {
   const { data: taleData } = useAppSelector((state) => state.createTale);
-  const dispatch = useAppDispatch();
   const theme = useTheme();
 
-  const handleCreateNewTale = () => {};
   return (
     <Box>
       <ShortTaleContainerBackgroundBox />
