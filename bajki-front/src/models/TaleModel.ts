@@ -5,4 +5,5 @@ export default interface TaleModel {
   child_name: string;
   topic: string;
   content?: string;
+  image_url?: string;
 }

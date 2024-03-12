@@ -14,7 +14,11 @@ const TaleCard = ({ tale }: { tale: TaleModel }) => {
     >
       <Box
         component="img"
-        src={constants.backupTaleImg}
+        src={tale.image_url ?? constants.backupTaleImg}
+        onError={(e) => {
+          const target = e.target as HTMLImageElement;
+          target.src = constants.backupTaleImg;
+        }}
         alt="Tale image"
         sx={{
           objectFit: "cover",

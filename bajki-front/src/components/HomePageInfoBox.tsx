@@ -8,7 +8,7 @@ const HomePageInfoBox = () => {
       }}
     >
       <Typography variant="h1"sx={{
-        pb: { xs: 4, md: 6 },
+        pb: { xs: 2, md: 3 },
       }}>
         Stwórz swoje bajki
       </Typography>

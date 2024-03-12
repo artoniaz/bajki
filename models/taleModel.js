@@ -24,6 +24,10 @@ const taleSchema = new Schema(
       type: String,
       required: true,
     },
+    image_url: {
+      type: String,
+      required: false,
+    }
   },
   { timestamps: true }
 );

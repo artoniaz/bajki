@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import TaleModel from "../models/TaleModel";
 import { forwardRef } from "react";
+import TaleButtonsContainer from "./TaleButtonsContainer";
 
 interface ShortTaleContainerMobileProps {
   tale: TaleModel;
@@ -41,14 +42,15 @@ HTMLDivElement,
           <Typography variant="h1" color="#000" mb={2}>
             {tale.topic}
           </Typography>
-          <Typography variant="body1" color="#000">
+          <Typography variant="body1" color="#000" mb={2}>
             {tale.content}
           </Typography>
+          <TaleButtonsContainer />
           <Box
             position="absolute"
             component="img"
             sx={{
-              transform: `translate(${translateXValue}, 99%)`,
+              transform: `translate(${translateXValue}, 100%)`,
               bottom: 0,
               width: "120%",
               height: "200px",

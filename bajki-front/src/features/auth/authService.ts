@@ -1,7 +1,8 @@
 import AuthCredentialsModel from "../../models/AuthCredentialsModel";
 import { UserProfile } from "../../models/UserModel";
 
-const API_URL = "https://grim.onrender.com/api/user";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+const API_URL = `${BASE_URL}/api/user`;
 
 export const authService = {
   registerUser: async (req: AuthCredentialsModel): Promise<string> => {
@@ -22,7 +23,7 @@ export const authService = {
   },
   loginUser: async (req: AuthCredentialsModel): Promise<string> => {
     try {
-      const response = await fetch(`${API_URL}/login`,{
+      const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req),

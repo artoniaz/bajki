@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Source+Code+Pro&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Galada&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Source+Code+Pro&display=swap');
 
 html,
 body {
@@ -36,4 +35,9 @@ a {
   width: 50%;
   height: 2px;
   background-color: #fff;
+}
+
+@font-face {
+  font-family: 'Galada';
+  src: local('Galada'), url(./fonts/Galada-Regular.ttf) format('truetype');
 }

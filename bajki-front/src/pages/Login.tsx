@@ -65,7 +65,7 @@ const Login = () => {
         <StyledTextField
           id={PASSWORD}
           name={PASSWORD}
-          label="Password *"
+          label="Hasło *"
           type={PASSWORD}
           size="small"
           sx={{ my: 2 }}
@@ -78,13 +78,14 @@ const Login = () => {
           type="submit"
           variant="contained"
           loading={status === Status.Loading}
+          size="large"
         >
           Zaloguj
         </StyledLoadingButton>
       </FormControl>
       <RouterTextButton to="" text="Zapomniałem hasła" />
       <Box my={0.5} />
-      <RouterTextButton to="register" text="Nie masz konta? Załóż konto" />
+      <RouterTextButton to="register" text="Załóż konto" prefixText="Nie masz konta? "/>
     </FormBox>
   );
 };

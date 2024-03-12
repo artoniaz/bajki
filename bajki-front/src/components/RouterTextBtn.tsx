@@ -4,13 +4,20 @@ import { Typography } from "@mui/material";
 export interface RouterTextButtonProps {
   to: string;
   text: string;
+  prefixText?: string;
 }
 
-const RouterTextButton = ({ to, text }: RouterTextButtonProps) => {
+const RouterTextButton = ({ to, text, prefixText }: RouterTextButtonProps) => {
   return (
     <RouterLink to={`/${to}`}>
+      {prefixText && (
+        <Typography component="span" variant="body2">
+          {prefixText}
+        </Typography>
+      )}
       <Typography
-        sx={{ cursor: "pointer", textDecoration: "underline" }}
+        sx={{ textDecoration: "underline" }}
+        component="span"
         variant="body2"
       >
         {text}

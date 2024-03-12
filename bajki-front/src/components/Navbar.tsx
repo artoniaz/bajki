@@ -11,8 +11,8 @@ const Navbar = () => {
   const handleSetIsDrawerOpen = (arg: boolean) => setIsDrawerOpen(arg);
 
   return (
-    <AppBar sx={{ backgroundColor: "rgba(0,0,0,0.4)", px: { xs: 0, md: 6 } }}>
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+    <AppBar sx={{ backgroundColor: "rgba(0,0,0,0.4)", px: { xs: 0, md: 10 } }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between", px: '0 !important' }}>
         <LogoBox logoType="noTitle" size="small" />
         <CustomDrawer open={isDrawerOpen} onClose={handleSetIsDrawerOpen} />
         <IconButton

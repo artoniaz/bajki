@@ -3,12 +3,13 @@ const mongoose = require("mongoose");
 const {
   createTaleChatCompletion,
 } = require("../openAi/createTaleChatCompletion");
+const { createImage } = require("../openAi/createImage");
 
-const getTalesByUser = async (req,res) => {
+const getTalesByUser = async (req, res) => {
   const user_id = req.user._id;
-  const tales = await Tale.find({user_id}).sort({createdAt: -1});
-  res.status(200).json(tales)
-}
+  const tales = await Tale.find({ user_id }).sort({ createdAt: -1 });
+  res.status(200).json(tales);
+};
 
 const getTale = async (req, res) => {
   const { id } = req.params;
@@ -26,9 +27,12 @@ const getTale = async (req, res) => {
 
 const createTale = async (req, res) => {
   try {
-    req.body.content = await createTaleChatCompletion(req);
-    // don't save tale to db if !id
+    const taleContent = await createTaleChatCompletion(req);
+    req.body.content = taleContent;
+    // don't save tale & don't create image if !id
     if (req.body.user_id !== "") {
+      const image_url = await createImage(taleContent);
+      req.body.image_url = image_url;
       const tale = await Tale.create(req.body);
       res.status(200).json(tale);
     } else {

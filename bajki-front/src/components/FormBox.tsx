@@ -12,19 +12,22 @@ const FormBox = ({ children, status, error }: FormBoxProps) => {
   return (
     <Box
       bgcolor="rgba(0,0,0,0.4)"
-      pt={2}
-      pb={4}
       display="flex"
       flexDirection="column"
       alignItems="strech"
       width="100%"
       sx={{
-        px: { xs: 3, md: 6 },
+        px: { xs: 2, md: 3 },
+        py: 3,
         borderRadius: 5,
       }}
     >
       {children}{" "}
-      {status === Status.Failed && <ErrorBox errorMessage={error!} />}
+      {status === Status.Failed && (
+        <Box mt={2}>
+          <ErrorBox errorMessage={error!} />
+        </Box>
+      )}
     </Box>
   );
 };
