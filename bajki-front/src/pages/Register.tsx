@@ -51,13 +51,13 @@ const Register = () => {
           onSubmit={(val) => formik.handleSubmit(val)}
           sx={{ py: 4 }}
         >
-          <Typography variant="h2" textAlign='center'>
+          <Typography variant="h2" textAlign="center">
             Załóż konto
           </Typography>
           <StyledTextField
             id="name"
             name="name"
-            label="Name *"
+            label="Twoje imię *"
             size="small"
             type="name"
             sx={{ my: 2 }}
@@ -81,7 +81,7 @@ const Register = () => {
           <StyledTextField
             id="password"
             name="password"
-            label="Password *"
+            label="Hasło *"
             type="password"
             size="small"
             sx={{ mb: 2 }}
@@ -93,7 +93,7 @@ const Register = () => {
           <StyledTextField
             id="passwordConfirm"
             name="passwordConfirm"
-            label="Confirm password *"
+            label="Powtórz hasło *"
             type="password"
             size="small"
             sx={{ mb: 2 }}
@@ -111,6 +111,7 @@ const Register = () => {
             type="submit"
             variant="contained"
             loading={status === Status.Loading}
+            size="large"
           >
             Stwórz konto
           </StyledLoadingButton>

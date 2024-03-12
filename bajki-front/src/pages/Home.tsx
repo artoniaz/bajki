@@ -51,16 +51,18 @@ const Home = () => {
       >
         <LogoBox logoType="title" size="big" />
         <HomePageInfoBox />
-        <Button
-          sx={{
-            display: { sx: "block", md: "none" },
-            mt: 4,
-          }}
-          variant="contained"
-          onClick={handleCreateTaleBtn}
-        >
-          Stwórz bajkę
-        </Button>
+        {isMobile && (
+          <Button
+            sx={{
+              mt: 4,
+            }}
+            variant="contained"
+            onClick={handleCreateTaleBtn}
+            size='large'
+          >
+            Stwórz bajkę
+          </Button>
+        )}
       </Grid>
       <Grid item sx={{ display: { xs: "none", md: "block" } }} md={3} />
       <Grid

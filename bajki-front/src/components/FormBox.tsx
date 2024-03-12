@@ -12,13 +12,13 @@ const FormBox = ({ children, status, error }: FormBoxProps) => {
   return (
     <Box
       bgcolor="rgba(0,0,0,0.4)"
-      py={3}
       display="flex"
       flexDirection="column"
       alignItems="strech"
       width="100%"
       sx={{
-        px: { xs: 3, md: 6 },
+        px: { xs: 2, md: 3 },
+        py: 3,
         borderRadius: 5,
       }}
     >

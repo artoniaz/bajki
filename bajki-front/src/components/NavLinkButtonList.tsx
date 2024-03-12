@@ -1,5 +1,4 @@
 import { useLocation } from "react-router-dom";
-import { isMobile } from "react-device-detect";
 import { navItems } from "../utils/navItems";
 import NavLinkButton from "./NavLinkButton";
 import AuthBox from "./AuthBox";

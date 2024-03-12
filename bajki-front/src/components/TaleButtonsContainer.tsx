@@ -19,9 +19,6 @@ const TaleButtonsContainer = () => {
       display="flex"
       justifyContent="space-between"
       p={isMobile ? 0 : 3}
-      borderRadius="48px 48px 0 0"
-      border={isMobile ? "none" : "1px solid #000"}
-      borderBottom="none"
     >
       <Button
         onClick={handleCreateNewTale}

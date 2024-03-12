@@ -44,12 +44,13 @@ const CreateTaleForm = () => {
       </Typography>
       <FormControl
         component={"form"}
+        sx={{ pt: 2 }}
         onSubmit={(val) => formik.handleSubmit(val)}
       >
         <StyledTextField
           id="child_name"
           name="child_name"
-          label="Imię *"
+          label="Wpisz imię dziecka *"
           type="text"
           size="small"
           sx={{ mb: 2 }}
@@ -60,7 +61,7 @@ const CreateTaleForm = () => {
         <StyledTextField
           id="age"
           name="age"
-          label="Wiek *"
+          label="Podaj wiek *"
           type="number"
           size="small"
           sx={{ mb: 2 }}
@@ -73,7 +74,7 @@ const CreateTaleForm = () => {
           id="topic"
           name="topic"
           size="small"
-          label="Temat"
+          label="Wybierz temat"
           value={formik.values.topic}
           onChange={formik.handleChange}
           error={formik.touched.topic && Boolean(formik.errors.topic)}
@@ -109,6 +110,7 @@ const CreateTaleForm = () => {
           type="submit"
           variant="contained"
           loading={status === Status.Loading}
+          size='large'
         >
           Stwórz bajkę
         </StyledLoadingButton>
