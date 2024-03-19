@@ -1,17 +1,19 @@
 import { Box } from "@mui/material";
-import { isMobile } from "react-device-detect";
+import { useAppSelector } from "../hooks/reduxHooks";
+import { Status } from "../utils/stateStatus";
 
-const BackgroundImageBox = ({isBackgroundFixed}: {isBackgroundFixed: boolean}) => {
+const BackgroundImageBox = () => {
+  const { status } = useAppSelector((state) => state.createTale);
   return (
     <Box
       component="img"
       sx={{
-        position: isMobile || isBackgroundFixed ? 'fixed' : 'absolute',
+        position: status !== Status.Success ? "fixed" : "absolute",
         width: "100%",
         maxWidth: "3400px",
         height: "100vh",
         margin: "auto",
-        objectFit: 'cover',
+        objectFit: "cover",
       }}
       alt="Children reading, having fun."
       src={require("../images/coverImg.png")}

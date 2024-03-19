@@ -15,7 +15,7 @@ const AppContainer = ({ children }: { children: JSX.Element }) => {
 
   return (
     <Grid container position="relative" component="main">
-      <BackgroundImageBox isBackgroundFixed={isOpacity} />
+      <BackgroundImageBox />
       {isOpacity && <BackgroundOpacityBox />}
       <Grid
         container
