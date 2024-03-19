@@ -8,6 +8,7 @@ import { Status } from "../utils/stateStatus";
 import { useEffect, useRef } from "react";
 import { isMobile } from "react-device-detect";
 import ShortTaleContainerMobile from "../components/ShortTaleContainerMobile";
+import FullScreenLoading from "../components/FullScreenLoading";
 
 const Home = () => {
   const { status: createTaleStatus, data: tale } = useAppSelector(
@@ -58,7 +59,7 @@ const Home = () => {
             }}
             variant="contained"
             onClick={handleCreateTaleBtn}
-            size='large'
+            size="large"
           >
             Stwórz bajkę
           </Button>
@@ -89,6 +90,9 @@ const Home = () => {
             />
           )}
         </Grid>
+      )}
+      {createTaleStatus === Status.Loading && (
+        <FullScreenLoading text="Teraz piszemy Twoją bajkę. Daj nam jeszcze kilka sekund" />
       )}
     </>
   );

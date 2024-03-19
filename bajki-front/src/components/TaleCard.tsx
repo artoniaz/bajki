@@ -1,6 +1,7 @@
 import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 import TaleModel from "../models/TaleModel";
 import constants from "../utils/constants";
+import { NavLink } from "react-router-dom";
 
 const TaleCard = ({ tale }: { tale: TaleModel }) => {
   return (
@@ -44,7 +45,16 @@ const TaleCard = ({ tale }: { tale: TaleModel }) => {
           Dla: {tale.child_name}, {tale.age.toString()} lat
         </Typography>
         {/* TODO: download tale to the device */}
-        <Button variant="contained">POBIERZ</Button>
+        <Box display="flex" justifyContent="space-between" width="100%">
+          <Button
+            component={NavLink}
+            to={`/tale/${tale._id}`}
+            variant="outlined"
+          >
+            szczegóły
+          </Button>
+          <Button variant="contained">POBIERZ</Button>
+        </Box>
       </CardContent>
     </Card>
   );

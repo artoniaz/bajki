@@ -13,6 +13,7 @@ import TalesFeed from "./features/tales/getTales/TalesFeed";
 import CreateTaleForm from "./features/tales/createTale/CreateTaleForm";
 import Register from "./pages/Register";
 import MyProfile from "./pages/MyProfile";
+import TalePage from "./features/tales/getTale/TalePage";
 
 const mobileRoutes = createRoutesFromElements(
   <Route path="/" element={<RootLayout />}>
@@ -24,6 +25,7 @@ const mobileRoutes = createRoutesFromElements(
     <Route path="register" element={<Register />} />
     <Route path="myTales" element={<TalesFeed />} />
     <Route path="myProfile" element={<MyProfile />} />
+    <Route path="tale/:id" element={<TalePage />} />
     <Route path="*" element={<NotFound />} />
   </Route>
 );
@@ -38,6 +40,7 @@ const webRoutes = createRoutesFromElements(
     </Route>
     <Route path="myTales" element={<TalesFeed />} />
     <Route path="myProfile" element={<MyProfile />} />
+    <Route path="tale/:id" element={<TalePage />} />
     <Route path="*" element={<NotFound />} />
   </Route>
 );
