@@ -9,7 +9,7 @@ const requireAuth = require("../middleware/requireAuth");
 const router = express.Router();
 
 router.route("/").get(requireAuth, getTalesByUser);
-router.get("/:id", getTale);
+router.route("/:id").get(requireAuth, getTale);
 router.post("/", createTale);
 
 module.exports = router;

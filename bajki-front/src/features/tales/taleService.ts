@@ -18,6 +18,20 @@ const taleService = {
       throw e;
     }
   },
+  getTale: async (taleId: string, userToken: string) => {
+    try {
+      const response = await fetch(`${API_URL}/${taleId}`, {
+        headers: { Authorization: `Bearer ${userToken}` },
+      });
+      if (!response.ok) {
+        throw Error("Błąd pobierania bajki.");
+      }
+      const json = await response.json();
+      return json;
+    } catch (e) {
+      throw e;
+    }
+  },
   createTale: async (taleReq: TaleModel) => {
     try {
       const response = await fetch(API_URL, {

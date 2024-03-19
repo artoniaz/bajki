@@ -2,11 +2,13 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import createTaleReducer from "./tales/createTale/createTaleSlice";
 import authReducer from "./auth/authSlice";
 import getTalesReducer from "./tales/getTales/getTalesSlice";
+import getTaleSlice from "./tales/getTale/getTaleSlice";
 
 const combinedReducers = combineReducers({
   auth: authReducer,
   createTale: createTaleReducer,
   getTales: getTalesReducer,
+  getTale: getTaleSlice,
 });
 
 export const rootReducer = (state: any, action: any) => {

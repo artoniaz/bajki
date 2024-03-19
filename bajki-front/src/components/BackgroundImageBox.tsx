@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
 import { isMobile } from "react-device-detect";
 
-const BackgroundImageBox = () => {
+const BackgroundImageBox = ({isBackgroundFixed}: {isBackgroundFixed: boolean}) => {
   return (
     <Box
       component="img"
       sx={{
-        position: isMobile ? 'fixed': 'absolute',
+        position: isMobile || isBackgroundFixed ? 'fixed' : 'absolute',
         width: "100%",
         maxWidth: "3400px",
         height: "100vh",

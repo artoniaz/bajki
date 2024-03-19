@@ -5,12 +5,18 @@ import { useLocation } from "react-router-dom";
 
 const AppContainer = ({ children }: { children: JSX.Element }) => {
   const { pathname } = useLocation();
+
+  const pathnamesWithOpacity = ["/myTales", "/myProfile", "/tale"];
+  var talePath = pathname.slice(0, pathname.lastIndexOf("/"));
+
+  const isOpacity: boolean =
+    pathnamesWithOpacity.indexOf(talePath) > -1 ||
+    pathnamesWithOpacity.indexOf(pathname) > -1;
+
   return (
     <Grid container position="relative" component="main">
-      <BackgroundImageBox />
-      {(pathname === "/myTales" || pathname === "/myProfile") && (
-          <BackgroundOpacityBox />
-      )}
+      <BackgroundImageBox isBackgroundFixed={isOpacity} />
+      {isOpacity && <BackgroundOpacityBox />}
       <Grid
         container
         zIndex={2}

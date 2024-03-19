@@ -1,6 +1,11 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
-const ErrorBox = ({ errorMessage }: { errorMessage: string }) => {
+interface ErrorBoxProps {
+  errorMessage: string;
+  children?: JSX.Element;
+}
+
+const ErrorBox = ({ errorMessage, children }: ErrorBoxProps) => {
     const theme = useTheme();
     const errorColor = theme.palette.error.main;
     console.log(errorColor);
@@ -16,6 +21,9 @@ const ErrorBox = ({ errorMessage }: { errorMessage: string }) => {
       <Typography color={errorColor} variant="body2">
         {errorMessage}
       </Typography>
+      <Box mt={2}>
+      {children}
+      </Box>
     </Box>
   );
 };
