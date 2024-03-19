@@ -1,10 +1,12 @@
 import { Box, Button } from "@mui/material";
 import { isMobile } from "react-device-detect";
-import { useAppDispatch } from "../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { reset } from "../features/tales/createTale/createTaleSlice";
+import { NavLink } from "react-router-dom";
 
 const TaleButtonsContainer = () => {
   const dispatch = useAppDispatch();
+  const { _id: taleId } = useAppSelector((state) => state.createTale.data!);
 
   const handleCreateNewTale = () => {
     dispatch(reset());
@@ -27,8 +29,12 @@ const TaleButtonsContainer = () => {
       >
         Stwórz nową
       </Button>
-      {/* TODO: onclick */}
-      <Button sx={{ flexGrow: "1" }} variant="contained">
+      <Button
+        sx={{ flexGrow: "1", textAlign: "center" }}
+        variant="contained"
+        component={NavLink}
+        to={`/tale/${taleId}`}
+      >
         Kontynuuj bajkę
       </Button>
     </Box>

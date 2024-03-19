@@ -32,7 +32,7 @@ const TalePage = () => {
     );
   }
 
-  if (status !== Status.Failed) {
+  if (status === Status.Failed) {
     return (
       <Center>
         <>
